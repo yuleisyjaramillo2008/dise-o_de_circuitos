@@ -7,7 +7,8 @@
 ## 📡 1. Tipos de Señales
 
 > 🌊 **Señal Analógica**  
-> Es **continua** y adopta **infinitos valores**.
+> Es continua y adopta infinitos valores.
+
 > 💻 **Señal Digital**  
 > Solo adopta dos valores (`0` y `1`).
 
