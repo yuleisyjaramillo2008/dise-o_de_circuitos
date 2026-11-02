@@ -6,10 +6,10 @@
 
 ## 📡 1. Tipos de Señales
 
-<div style="background-color: #f0f9ff; border-left: 5px solid #0284c7; padding: 12px 16px; border-radius: 6px; margin-bottom: 12px; color: #0f172a;">
-  <strong>🌊 Señal Analógica:</strong> Es <b>continua</b> y adopta <b>infinitos valores</b>.
-</div>
+> 🌊 **Señal Analógica**  
+> Es **continua** y adopta **infinitos valores** a lo largo del tiempo (como la voz o la temperatura).
 
-<div style="background-color: #f0fdf4; border-left: 5px solid #16a34a; padding: 12px 16px; border-radius: 6px; color: #0f172a;">
-  <strong>💻 Señal Digital:</strong> Solo adopta <b>dos valores (0 y 1)</b>. Es el lenguaje base de las computadoras.
-</div>
+> 💻 **Señal Digital**  
+> Solo adopta **dos valores** (`0` y `1`). Es el lenguaje que procesan y entienden las computadoras.
+
+---
