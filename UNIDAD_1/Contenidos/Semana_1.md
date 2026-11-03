@@ -16,17 +16,21 @@
 
 ---
 
-## 🧩2. Circuitos combinacionales 
-### 🧠Lógica Combinacional 
+## 🧩2. Circuitos combinacionales
 Circuito que aplica la lógica combinacional para realizar una función específica.
-
-> ⚡ **Respuesta Inmediata**  
+### 🧠Lógica Combinacional  
 > Su salida en cualquier instante depende **únicamente de sus entradas en ese mismo momento**.
 
 * ❌ **Sin memoria:** No almacena ni recuerda datos de operaciones pasadas.  
 * 🔄 **Cambio directo:** Si las entradas cambian, la salida cambia inmediatamente.
 
 ---
+
+## ⚙️3. TRANSISTOR
+Es un semiconductor que funciona como interruptor eléctrico o como amplificador de señales.
+> Varios transistores interconectados forman una compuerta lógica. 
+
+
 
 
 
