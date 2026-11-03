@@ -46,6 +46,8 @@ Es un semiconductor que funciona como interruptor eléctrico o como amplificador
   </tr>
 </table>
 
+---
+
 ## 🎢4. Rangos 
 
 
