@@ -143,92 +143,72 @@ Para convertir un número decimal a binario se divide sucesivamente entre 2 y se
 
 ---
 
-<h2>➕ 8. Aritmética Binaria y Números con Signo</h2>
+## **➕ 8. Aritmética Binaria y Números con Signo**
 
-<h3>1. Suma Binaria</h3>
-<p>Operación básica columna por columna. Si el resultado supera el valor de 1, se genera un <b>acarreo</b> (<i>carry</i>) hacia la siguiente columna.</p>
+### **1. Suma Binaria**
+Operación básica columna por columna. Si el resultado supera el valor de 1, se genera un **acarreo** (*carry*) hacia la siguiente columna.
 
-<ul>
-  <li><code>0 + 0 = 0</code></li>
-  <li><code>0 + 1 = 1</code></li>
-  <li><code>1 + 0 = 1</code></li>
-  <li><code>1 + 1 = 10₂</code> <i>(escribo 0 y llevo 1 de acarreo)</i></li>
-  <li><code>1 + 1 + 1 = 11₂</code> <i>(escribo 1 y llevo 1 de acarreo)</i></li>
-</ul>
+- `0 + 0 = 0`
+- `0 + 1 = 1`
+- `1 + 0 = 1`
+- `1 + 1 = 10₂` *(escribo 0 y llevo 1 de acarreo)*
+- `1 + 1 + 1 = 11₂` *(escribo 1 y llevo 1 de acarreo)*
 
-<h4>Ejemplo de Suma (11 + 6 = 17):</h4>
+#### **Ejemplo de Suma (11 + 6 = 17):**
 <pre><code>  111    &lt;- Acarreos
   1011   (11 en decimal)
 + 0110   (6 en decimal)
 ------
  10001   (17 en decimal)</code></pre>
 
-<hr>
+---
 
-<h3>2. Representación de Números Negativos: Complemento a Dos (C2)</h3>
-<p>Dado que los circuitos digitales solo entienden <code>0</code> y <code>1</code> y no poseen el símbolo <code>-</code>, se utiliza el convenio de <b>Complemento a Dos</b>.</p>
+### **2. Representación de Números Negativos: Complemento a Dos (C2)**
+Dado que los circuitos digitales solo entienden `0` y `1` y no poseen el símbolo `-`, se utiliza el convenio de **Complemento a Dos**.
 
-<blockquote style="background-color: #f6f8fa; border-left: 4px solid #0969da; padding: 10px;">
-  💡 <b>Regla para obtener el negativo de un número (-B):</b>
-  <ol>
-    <li><b>Invertir</b> todos los bits (cambiar 0 por 1 y 1 por 0).</li>
-    <li><b>Sumar 1</b> al resultado.</li>
-  </ol>
-</blockquote>
+> 💡 **Regla para obtener el negativo de un número (-B):**
+> 1. **Invertir** todos los bits (cambiar 0 por 1 y 1 por 0).
+> 2. **Sumar 1** al resultado.
 
 <pre><code>Ejemplo: Obtener -3 a partir de +3 (en 4 bits)
   0011   (+3 en binario)
 &gt; 1100   (Invertir bits -&gt; Complemento a 1)
 &gt; 1101   (Sumar 1 -&gt; Representa el -3 en C2)</code></pre>
 
-<ul>
-  <li><b>Bit de Signo:</b> El bit más a la izquierda indica el signo (<code>0</code> = Positivo, <code>1</code> = Negativo).</li>
-  <li><b>Rango en 4 bits:</b> De <b>-8 a +7</b> (<code>1000₂</code> a <code>0111₂</code>).</li>
-  <li>⚡ <b>Ventaja:</b> Permite realizar restas utilizando el mismo circuito sumador: <i>A - B = A + (-B)</i>.</li>
-  <li>⚠️ <b>Overflow (Desbordamiento):</b> Ocurre cuando el resultado supera los bits disponibles (ejemplo: sumar dos positivos y que el bit de signo cambie a negativo).</li>
-</ul>
+- **Bit de Signo:** El bit más a la izquierda indica el signo (`0` = Positivo, `1` = Negativo).
+- **Rango en 4 bits:** De **-8 a +7** (`1000₂` a `0111₂`).
+- ⚡ **Ventaja:** Permite realizar restas utilizando el mismo circuito sumador: *A - B = A + (-B)*.
+- ⚠️ **Overflow (Desbordamiento):** Ocurre cuando el resultado supera los bits disponibles (ejemplo: sumar dos positivos y que el bit de signo cambie a negativo).
 
-<hr>
+---
 
-<h2>📑 9. Códigos Digitales</h2>
+## **📑 9. Códigos Digitales**
 
-<div style="background-color: #f6f8fa; border-left: 4px solid #0969da; padding: 10px; margin-bottom: 10px;">
-  <b>🔢 BCD (Binary-Coded Decimal)</b><br>
-  Representa cada dígito decimal (0-9) de manera independiente usando bloques de <b>4 bits</b>.
-  <ul>
-    <li><b>Uso:</b> Displays de 7 segmentos en relojes y calculadoras.</li>
-    <li><b>Nota:</b> Las combinaciones de <code>1010₂</code> (10) a <code>1111₂</code> (15) son inválidas.</li>
-    <li><i>Ejemplo:</i> 157₁₀ → <code>0001</code> (1) | <code>0101</code> (5) | <code>0111</code> (7) = <b>000101010111_BCD</b>.</li>
-  </ul>
-</div>
+> 🔢 **BCD (Binary-Coded Decimal)**  
+> Representa cada dígito decimal (0-9) de manera independiente usando bloques de **4 bits**.  
+> - **Uso:** Displays de 7 segmentos en relojes y calculadoras.  
+> - **Nota:** Las combinaciones de `1010₂` (10) a `1111₂` (15) son inválidas.  
+> - *Ejemplo:* 157₁₀ → `0001` (1) | `0101` (5) | `0111` (7) = **000101010111_BCD**.
 
-<div style="background-color: #f6f8fa; border-left: 4px solid #0969da; padding: 10px; margin-bottom: 10px;">
-  <b>🔄 Código Gray</b><br>
-  Código no ponderado en el que entre dos números consecutivos <b>solo cambia 1 solo bit</b>.
-  <ul>
-    <li><b>Uso:</b> Evita errores de lectura en sensores de posición rotativos (<i>encoders</i>) e integra la base de los Mapas de Karnaugh.</li>
-    <li><i>Comparación (3 → 4):</i> En binario cambian 3 bits a la vez (<code>011</code> → <code>100</code>), mientras que en Gray solo cambia 1 bit (<code>010</code> → <code>110</code>).</li>
-  </ul>
-</div>
+> 🔄 **Código Gray**  
+> Código no ponderado en el que entre dos números consecutivos **solo cambia 1 solo bit**.  
+> - **Uso:** Evita errores de lectura en sensores de posición rotativos (*encoders*) e integra la base de los Mapas de Karnaugh.  
+> - *Comparación (3 → 4):* En binario cambian 3 bits a la vez (`011` → `100`), mientras que en Gray solo cambia 1 bit (`010` → `110`).
 
-<div style="background-color: #f6f8fa; border-left: 4px solid #0969da; padding: 10px; margin-bottom: 10px;">
-  <b>🔤 Código ASCII</b><br>
-  Formato estándar de 7 u 8 bits para representar letras, números y caracteres de control.
-  <ul>
-    <li><i>Ejemplo:</i> Tu equipo guarda la letra <code>'A'</code> como el valor decimal 65₁₀ = <b>01000001₂</b>.</li>
-  </ul>
-</div>
+> 🔤 **Código ASCII**  
+> Formato estándar de 7 u 8 bits para representar letras, números y caracteres de control.  
+> - *Ejemplo:* Tu equipo guarda la letra `'A'` como el valor decimal 65₁₀ = **01000001₂**.
 
-<hr>
+---
 
-<h2>🚪 10. Compuertas Lógicas</h2>
+## **🚪 10. Compuertas Lógicas**
 
-<p>Las compuertas lógicas son los bloques básicos constitutivos de los circuitos combinacionales.</p>
+Las compuertas lógicas son los bloques básicos constitutivos de los circuitos combinacionales.
 
-<h3>1. Compuertas Básicas</h3>
+### **1. Compuertas Básicas**
 
-<h4>⏺️ NOT (Inversor)</h4>
-<p><i>Invierte el estado lógico de su entrada. Ecuación: Y = A'</i></p>
+#### **⏺️ NOT (Inversor)**
+*Invierte el estado lógico de su entrada. Ecuación: Y = A'*
 
 <table width="100%">
   <tr>
@@ -258,10 +238,10 @@ Para convertir un número decimal a binario se divide sucesivamente entre 2 y se
   </tr>
 </table>
 
-<hr>
+---
 
-<h4>🤝 AND</h4>
-<p><i>Salida 1 únicamente si todas las entradas son 1. Ecuación: Y = A · B</i></p>
+#### **🤝 AND**
+*Salida 1 únicamente si todas las entradas son 1. Ecuación: Y = A · B*
 
 <table width="100%">
   <tr>
@@ -304,10 +284,10 @@ Para convertir un número decimal a binario se divide sucesivamente entre 2 y se
   </tr>
 </table>
 
-<hr>
+---
 
-<h4>🔀 OR</h4>
-<p><i>Salida 1 si al menos una de las entradas es 1. Ecuación: Y = A + B</i></p>
+#### **🔀 OR**
+*Salida 1 si al menos una de las entradas es 1. Ecuación: Y = A + B*
 
 <table width="100%">
   <tr>
@@ -350,12 +330,12 @@ Para convertir un número decimal a binario se divide sucesivamente entre 2 y se
   </tr>
 </table>
 
-<hr>
+---
 
-<h3>2. Compuertas Negadas y Específicas</h3>
+### **2. Compuertas Negadas y Específicas**
 
-<h4>🚫 NAND (Universal)</h4>
-<p><i>Es la negación de la compuerta AND. Salida 0 únicamente cuando todas las entradas son 1. Ecuación: Y = (A · B)'</i></p>
+#### **🚫 NAND (Universal)**
+*Es la negación de la compuerta AND. Salida 0 únicamente cuando todas las entradas son 1. Ecuación: Y = (A · B)'*
 
 <table width="100%">
   <tr>
@@ -398,10 +378,10 @@ Para convertir un número decimal a binario se divide sucesivamente entre 2 y se
   </tr>
 </table>
 
-<hr>
+---
 
-<h4>⛔ NOR (Universal)</h4>
-<p><i>Es la negación de la compuerta OR. Salida 1 únicamente cuando todas las entradas son 0. Ecuación: Y = (A + B)'</i></p>
+#### **⛔ NOR (Universal)**
+*Es la negación de la compuerta OR. Salida 1 únicamente cuando todas las entradas son 0. Ecuación: Y = (A + B)'*
 
 <table width="100%">
   <tr>
@@ -444,10 +424,10 @@ Para convertir un número decimal a binario se divide sucesivamente entre 2 y se
   </tr>
 </table>
 
-<hr>
+---
 
-<h4>🔲 XOR (OR Exclusiva)</h4>
-<p><i>Salida 1 si las entradas son diferentes entre sí. Ecuación: Y = A ⊕ B</i></p>
+#### **🔲 XOR (OR Exclusiva)**
+*Salida 1 si las entradas son diferentes entre sí. Ecuación: Y = A ⊕ B*
 
 <table width="100%">
   <tr>
@@ -490,10 +470,10 @@ Para convertir un número decimal a binario se divide sucesivamente entre 2 y se
   </tr>
 </table>
 
-<hr>
+---
 
-<h4>🔳 XNOR (Equivalencia)</h4>
-<p><i>Salida 1 si las entradas son iguales entre sí. Ecuación: Y = (A ⊕ B)'</i></p>
+#### **🔳 XNOR (Equivalencia)**
+*Salida 1 si las entradas son iguales entre sí. Ecuación: Y = (A ⊕ B)'*
 
 <table width="100%">
   <tr>
@@ -536,13 +516,13 @@ Para convertir un número decimal a binario se divide sucesivamente entre 2 y se
   </tr>
 </table>
 
-<hr>
+---
 
-<h2>🛈 11. Circuito Integrado 74LS08</h2>
+## **🛈 11. Circuito Integrado 74LS08**
 
-<p>Las compuertas lógicas físicas se comercializan dentro de chips conocidos como <b>Circuitos Integrados (CI)</b> en encapsulado estándar de doble hilera <b>DIP-14</b> (14 pines).</p>
+Las compuertas lógicas físicas se comercializan dentro de chips conocidos como **Circuitos Integrados (CI)** en encapsulado estándar de doble hilera **DIP-14** (14 pines).
 
-<h3>Pinout del CI 74LS08 (Cuatro compuertas AND de 2 entradas)</h3>
+### **Pinout del CI 74LS08 (Cuatro compuertas AND de 2 entradas)**
 
 <table width="100%">
   <tr>
@@ -561,11 +541,3 @@ Para convertir un número decimal a binario se divide sucesivamente entre 2 y se
         <li><b>Compuerta 2:</b> Entradas en pines 4 (2A) y 5 (2B) | Salida en pin 6 (2Y).</li>
         <li><b>Compuerta 3:</b> Entradas en pines 9 (3A) y 10 (3B) | Salida en pin 8 (3Y).</li>
         <li><b>Compuerta 4:</b> Entradas en pines 12 (4A) y 13 (4B) | Salida en pin 11 (4Y).</li>
-      </ul>
-    </td>
-  </tr>
-</table>
-
-<div style="background-color: #fff8c5; border-left: 4px solid #d4a72c; padding: 10px; margin-top: 15px;">
-  💡 <b>Tip de laboratorio:</b> El prefijo <code>74LS</code> indica tecnología TTL y <code>74HC</code> indica CMOS. Ambos integrados poseen exactamente la misma distribución física de pines y función lógica.
-</div> 
