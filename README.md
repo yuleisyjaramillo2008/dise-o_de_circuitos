@@ -62,24 +62,32 @@
 
 ## 🗂️ **ÍNDICE GENERAL DE UNIDADES**
 
-<table>
+<br>
+
+<table border="0" cellspacing="15" cellpadding="20" align="center">
   <tr align="center">
-    <td width="220">
-      <a href="./UNIDAD_1/README.md">
-        <img src="https://img.shields.io/badge/📘_UNIDAD_1-Lógica_Combinacional-89CFF0?style=for-the-badge&logoColor=black" alt="Unidad 1"><br>
-        <sub><b>Acceder a Semanas 1 a 4</b></sub>
+    <td bgcolor="#D4E6F1" width="220" style="border-radius: 15px;">
+      <a href="./UNIDAD_1/README.md" style="text-decoration: none;">
+        <h2 style="color: #1B4F72; margin: 0;">📘 UNIDAD 1</h2>
+        <p style="color: #2874A6; font-size: 14px; margin: 10px 0;"><b>Lógica Combinacional</b><br>Semanas 1 a 4</p>
+        <hr color="#A9CCE3">
+        <b style="color: #154360; font-size: 16px;">👉 Entrar a la Unidad</b>
       </a>
     </td>
-    <td width="220">
-      <a href="./UNIDAD_2/README.md">
-        <img src="https://img.shields.io/badge/💜_UNIDAD_2-Lógica_Secuencial-D8BFD8?style=for-the-badge&logoColor=black" alt="Unidad 2"><br>
-        <sub><b>Memorias y Flip-Flops</b></sub>
+    <td bgcolor="#EBDEF0" width="220" style="border-radius: 15px;">
+      <a href="./UNIDAD_2/README.md" style="text-decoration: none;">
+        <h2 style="color: #512E5F; margin: 0;">💜 UNIDAD 2</h2>
+        <p style="color: #76448A; font-size: 14px; margin: 10px 0;"><b>Lógica Secuencial</b><br>Memorias & Flip-Flops</p>
+        <hr color="#D7BDE2">
+        <b style="color: #4A235A; font-size: 16px;">👉 Entrar a la Unidad</b>
       </a>
     </td>
-    <td width="220">
-      <a href="./UNIDAD_3/README.md">
-        <img src="https://img.shields.io/badge/💚_UNIDAD_3-Descripción_VHDL-B2AC88?style=for-the-badge&logoColor=black" alt="Unidad 3"><br>
-        <sub><b>Diseño en FPGA</b></sub>
+    <td bgcolor="#D5F5E3" width="220" style="border-radius: 15px;">
+      <a href="./UNIDAD_3/README.md" style="text-decoration: none;">
+        <h2 style="color: #1E8449; margin: 0;">💚 UNIDAD 3</h2>
+        <p style="color: #27AE60; font-size: 14px; margin: 10px 0;"><b>Descripción en VHDL</b><br>Diseño en FPGA</p>
+        <hr color="#A9DFBF">
+        <b style="color: #145A32; font-size: 16px;">👉 Entrar a la Unidad</b>
       </a>
     </td>
   </tr>
