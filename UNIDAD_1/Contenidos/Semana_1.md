@@ -1,5 +1,5 @@
 <div align="right">
-  <a href="#footer-nav">
+  <a href="#final">
     <img src="https://img.shields.io/badge/⬇️_Ir_al_Final-2196F3?style=for-the-badge&logoColor=white" alt="Ir abajo">
   </a>
 </div>
@@ -547,3 +547,29 @@ Las compuertas lógicas físicas se comercializan dentro de chips conocidos como
         <li><b>Compuerta 2:</b> Entradas en pines 4 (2A) y 5 (2B) | Salida en pin 6 (2Y).</li>
         <li><b>Compuerta 3:</b> Entradas en pines 9 (3A) y 10 (3B) | Salida en pin 8 (3Y).</li>
         <li><b>Compuerta 4:</b> Entradas en pines 12 (4A) y 13 (4B) | Salida en pin 11 (4Y).</li>
+
+<br><hr>
+
+<a name="final"></a>
+
+<div align="center">
+  <table border="0" cellspacing="10" cellpadding="10">
+    <tr align="center">
+      <td bgcolor="#ECEFF1" width="180">
+        <a href="../README.md">
+          <img src="https://img.shields.io/badge/⬅️_Índice_Unidad_1-607D8B?style=for-the-badge&logoColor=white" alt="Índice">
+        </a>
+      </td>
+      <td bgcolor="#E8F5E9" width="160">
+        <a href="#top">
+          <img src="https://img.shields.io/badge/⬆️_Subir_al_Inicio-4CAF50?style=for-the-badge&logoColor=white" alt="Subir">
+        </a>
+      </td>
+      <td bgcolor="#FFF3E0" width="180">
+        <a href="./Semana_2.md">
+          <img src="https://img.shields.io/badge/Semana_2_➡️-FF9800?style=for-the-badge&logoColor=white" alt="Siguiente">
+        </a>
+      </td>
+    </tr>
+  </table>
+</div>
