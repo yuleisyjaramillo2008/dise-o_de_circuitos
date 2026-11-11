@@ -157,8 +157,8 @@ Operación básica columna por columna. Si el resultado supera el valor de 1, se
 - `0 + 0 = 0`
 - `0 + 1 = 1`
 - `1 + 0 = 1`
-- `1 + 1 = 10₂` *(escribo 0 y llevo 1 de acarreo)*
-- `1 + 1 + 1 = 11₂` *(escribo 1 y llevo 1 de acarreo)*
+- `1 + 1 = 10₂`
+- `1 + 1 + 1 = 11₂` 
 
 #### **Ejemplo de Suma (11 + 6 = 17):**
 <pre><code>  111    &lt;- Acarreos
@@ -181,40 +181,27 @@ Dado que los circuitos digitales solo entienden `0` y `1` y no poseen el símbol
 &gt; 1100   (Invertir bits -&gt; Complemento a 1)
 &gt; 1101   (Sumar 1 -&gt; Representa el -3 en C2)</code></pre>
 
-- **Bit de Signo:** El bit más a la izquierda indica el signo (`0` = Positivo, `1` = Negativo).
-- **Rango en 4 bits:** De **-8 a +7** (`1000₂` a `0111₂`).
-- ⚡ **Ventaja:** Permite realizar restas utilizando el mismo circuito sumador: *A - B = A + (-B)*.
-- ⚠️ **Overflow (Desbordamiento):** Ocurre cuando el resultado supera los bits disponibles (ejemplo: sumar dos positivos y que el bit de signo cambie a negativo).
-
 ---
 
 ## **📑 9. Códigos Digitales**
 
 > 🔢 **BCD (Binary-Coded Decimal)**  
 > Representa cada dígito decimal (0-9) de manera independiente usando bloques de **4 bits**.  
-> - **Uso:** Displays de 7 segmentos en relojes y calculadoras.  
-> - **Nota:** Las combinaciones de `1010₂` (10) a `1111₂` (15) son inválidas.  
-> - *Ejemplo:* 157₁₀ → `0001` (1) | `0101` (5) | `0111` (7) = **000101010111_BCD**.
 
 > 🔄 **Código Gray**  
 > Código no ponderado en el que entre dos números consecutivos **solo cambia 1 solo bit**.  
-> - **Uso:** Evita errores de lectura en sensores de posición rotativos (*encoders*) e integra la base de los Mapas de Karnaugh.  
-> - *Comparación (3 → 4):* En binario cambian 3 bits a la vez (`011` → `100`), mientras que en Gray solo cambia 1 bit (`010` → `110`).
 
 > 🔤 **Código ASCII**  
 > Formato estándar de 7 u 8 bits para representar letras, números y caracteres de control.  
-> - *Ejemplo:* Tu equipo guarda la letra `'A'` como el valor decimal 65₁₀ = **01000001₂**.
 
 ---
 
 ## **🚪 10. Compuertas Lógicas**
 
-Las compuertas lógicas son los bloques básicos constitutivos de los circuitos combinacionales.
-
 ### **1. Compuertas Básicas**
 
 #### **⏺️ NOT (Inversor)**
-*Invierte el estado lógico de su entrada. Ecuación: Y = A'*
+*Invierte una entrada.*
 
 <table width="100%">
   <tr>
@@ -247,7 +234,7 @@ Las compuertas lógicas son los bloques básicos constitutivos de los circuitos 
 ---
 
 #### **🤝 AND**
-*Salida 1 únicamente si todas las entradas son 1. Ecuación: Y = A · B*
+*Salida 1 únicamente si todas las entradas son 1.*
 
 <table width="100%">
   <tr>
@@ -293,7 +280,7 @@ Las compuertas lógicas son los bloques básicos constitutivos de los circuitos 
 ---
 
 #### **🔀 OR**
-*Salida 1 si al menos una de las entradas es 1. Ecuación: Y = A + B*
+*Salida 1 si al menos una de las entradas es 1.*
 
 <table width="100%">
   <tr>
@@ -341,7 +328,7 @@ Las compuertas lógicas son los bloques básicos constitutivos de los circuitos 
 ### **2. Compuertas Negadas y Específicas**
 
 #### **🚫 NAND (Universal)**
-*Es la negación de la compuerta AND. Salida 0 únicamente cuando todas las entradas son 1. Ecuación: Y = (A · B)'*
+*Es la negación de la compuerta AND. Salida 0 únicamente cuando todas las entradas son 1.*
 
 <table width="100%">
   <tr>
@@ -387,7 +374,7 @@ Las compuertas lógicas son los bloques básicos constitutivos de los circuitos 
 ---
 
 #### **⛔ NOR (Universal)**
-*Es la negación de la compuerta OR. Salida 1 únicamente cuando todas las entradas son 0. Ecuación: Y = (A + B)'*
+*Es la negación de la compuerta OR. Salida 1 únicamente cuando todas las entradas son 0.*
 
 <table width="100%">
   <tr>
@@ -433,7 +420,7 @@ Las compuertas lógicas son los bloques básicos constitutivos de los circuitos 
 ---
 
 #### **🔲 XOR (OR Exclusiva)**
-*Salida 1 si las entradas son diferentes entre sí. Ecuación: Y = A ⊕ B*
+*Salida 1 si las entradas son diferentes entre sí.*
 
 <table width="100%">
   <tr>
@@ -479,7 +466,7 @@ Las compuertas lógicas son los bloques básicos constitutivos de los circuitos 
 ---
 
 #### **🔳 XNOR (Equivalencia)**
-*Salida 1 si las entradas son iguales entre sí. Ecuación: Y = (A ⊕ B)'*
+*Salida 1 si las entradas son iguales entre sí.*
 
 <table width="100%">
   <tr>
@@ -525,9 +512,6 @@ Las compuertas lógicas son los bloques básicos constitutivos de los circuitos 
 ---
 
 ## **🛈 11. Circuito Integrado 74LS08**
-
-Las compuertas lógicas físicas se comercializan dentro de chips conocidos como **Circuitos Integrados (CI)** en encapsulado estándar de doble hilera **DIP-14** (14 pines).
-
 ### **Pinout del CI 74LS08 (Cuatro compuertas AND de 2 entradas)**
 
 <table width="100%">
