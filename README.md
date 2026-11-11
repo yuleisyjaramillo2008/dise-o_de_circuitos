@@ -60,6 +60,29 @@
 
 ---
 
-## 💻 Descripción del Proyecto
+## 🗂️ **ÍNDICE GENERAL DE UNIDADES**
 
-Escribe aquí la introducción o los detalles sobre la práctica de Diseño de Circuitos.
+<table>
+  <tr align="center">
+    <td width="220">
+      <a href="./UNIDAD_1/README.md">
+        <img src="https://img.shields.io/badge/📘_UNIDAD_1-Lógica_Combinacional-89CFF0?style=for-the-badge&logoColor=black" alt="Unidad 1"><br>
+        <sub><b>Acceder a Semanas 1 a 4</b></sub>
+      </a>
+    </td>
+    <td width="220">
+      <a href="./UNIDAD_2/README.md">
+        <img src="https://img.shields.io/badge/💜_UNIDAD_2-Lógica_Secuencial-D8BFD8?style=for-the-badge&logoColor=black" alt="Unidad 2"><br>
+        <sub><b>Memorias y Flip-Flops</b></sub>
+      </a>
+    </td>
+    <td width="220">
+      <a href="./UNIDAD_3/README.md">
+        <img src="https://img.shields.io/badge/💚_UNIDAD_3-Descripción_VHDL-B2AC88?style=for-the-badge&logoColor=black" alt="Unidad 3"><br>
+        <sub><b>Diseño en FPGA</b></sub>
+      </a>
+    </td>
+  </tr>
+</table>
+
+</div>
