@@ -1,3 +1,9 @@
+<div align="right">
+  <a href="#final">
+    <img src="https://img.shields.io/badge/⬇️_Ir_al_Final-E91E63?style=for-the-badge&logoColor=white" alt="Ir abajo">
+  </a>
+</div>
+
 <div align="center">
 
 # ⚙️ **CIRCUITOS ARITMÉTICOS: SUMADORES, RESTADORES Y COMPARADORES** ⚙️
@@ -147,3 +153,29 @@ Determina las relaciones de orden entre dos números A y B:
 
 - **Igualdad (`A = B`):** Aplica `XNOR` bit a bit y evalúa una compuerta `AND` general.
 - **Mayoría (`A > B`):** Evalúa desde el bit más significativo (MSB) hacia el menos significativo (LSB); el primer bit diferente determina cuál es mayor.
+
+<br><hr>
+
+<a name="final"></a>
+
+<div align="center">
+  <table border="0" cellspacing="10" cellpadding="10">
+    <tr align="center">
+      <td bgcolor="#E8F5E9" width="180">
+        <a href="./Semana_3.md">
+          <img src="https://img.shields.io/badge/⬅️_Semana_3-4CAF50?style=for-the-badge&logoColor=white" alt="Anterior">
+        </a>
+      </td>
+      <td bgcolor="#E8F5E9" width="160">
+        <a href="#top">
+          <img src="https://img.shields.io/badge/⬆️_Subir_al_Inicio-4CAF50?style=for-the-badge&logoColor=white" alt="Subir">
+        </a>
+      </td>
+      <td bgcolor="#ECEFF1" width="180">
+        <a href="../README.md">
+          <img src="https://img.shields.io/badge/Índice_Unidad_1_➡️-607D8B?style=for-the-badge&logoColor=white" alt="Siguiente">
+        </a>
+      </td>
+    </tr>
+  </table>
+</div>
