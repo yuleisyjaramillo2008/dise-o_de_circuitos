@@ -12,11 +12,8 @@
 
 ## **🧠 1. Suma Binaria y Tipos de Sumadores**
 
-La suma columna por columna requiere dos tipos de circuitos según la posición del bit:
-
-- 🟢 **Semisumador (Half Adder - HA):** Solo suma 2 bits (`A` y `B`). Se usa únicamente en la **columna 0** porque no recibe acarreo previo.
-- 🔵 **Sumador Completo (Full Adder - FA):** Suma 3 bits (`A`, `B` y el acarreo de entrada `Cin`). Se usa en las **columnas 1, 2, 3...**
-
+- 🟢 **Semisumador (HA):** Solo suma 2 bits (`A` y `B`).
+- 🔵 **Sumador Completo (FA):** Suma 3 bits (`A`, `B` y el acarreo de entrada `Cin`). 
 <table width="100%">
   <thead>
     <tr align="center">
