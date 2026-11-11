@@ -91,3 +91,11 @@
 </table>
 
 </div>
+
+---
+
+# Declaración de uso de la IA generativa
+Por la presente afirmo que se ha usado Gemini y ChatGPT como una guía para elaboración de el presente portafolio siendo específicos en el manejo de Markdown para la redacción del mismo. También se asegura que el contenido de este fue creado por mi persona quiandose en fuentes académicas enumeradas en la bibliografía y en la información proporcionada por el docente acargo (diapositivas subidas EVA) y por notas tomadas en clase por mi persona. 
+
+‌
+
