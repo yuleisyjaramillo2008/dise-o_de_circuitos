@@ -547,6 +547,10 @@ Las compuertas lógicas físicas se comercializan dentro de chips conocidos como
         <li><b>Compuerta 2:</b> Entradas en pines 4 (2A) y 5 (2B) | Salida en pin 6 (2Y).</li>
         <li><b>Compuerta 3:</b> Entradas en pines 9 (3A) y 10 (3B) | Salida en pin 8 (3Y).</li>
         <li><b>Compuerta 4:</b> Entradas en pines 12 (4A) y 13 (4B) | Salida en pin 11 (4Y).</li>
+        </ul>
+</td>
+</tr>
+</table>
 
 <br><hr>
 
