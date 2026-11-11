@@ -1,3 +1,9 @@
+<div align="right">
+  <a href="#final">
+    <img src="https://img.shields.io/badge/⬇️_Ir_al_Final-4CAF50?style=for-the-badge&logoColor=white" alt="Ir abajo">
+  </a>
+</div>
+
 <div align="center">
 
 # ⚙️ **MAPAS DE KARNAUGH, CONDICIONES INDIFERENTES Y PUERTAS UNIVERSALES** ⚙️
@@ -154,3 +160,29 @@ Costo: 5 Literales</code></pre>
     </td>
   </tr>
 </table>
+
+<br><hr>
+
+<a name="final"></a>
+
+<div align="center">
+  <table border="0" cellspacing="10" cellpadding="10">
+    <tr align="center">
+      <td bgcolor="#FFF3E0" width="180">
+        <a href="./Semana_2.md">
+          <img src="https://img.shields.io/badge/⬅️_Semana_2-FF9800?style=for-the-badge&logoColor=white" alt="Anterior">
+        </a>
+      </td>
+      <td bgcolor="#E8F5E9" width="160">
+        <a href="#top">
+          <img src="https://img.shields.io/badge/⬆️_Subir_al_Inicio-4CAF50?style=for-the-badge&logoColor=white" alt="Subir">
+        </a>
+      </td>
+      <td bgcolor="#FCE4EC" width="180">
+        <a href="./Semana_4.md">
+          <img src="https://img.shields.io/badge/Semana_4_➡️-E91E63?style=for-the-badge&logoColor=white" alt="Siguiente">
+        </a>
+      </td>
+    </tr>
+  </table>
+</div>
