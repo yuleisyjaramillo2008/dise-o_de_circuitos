@@ -90,10 +90,6 @@ Si intercambias **`+` por `·`** y **`0` por `1`** (sin cambiar las variables), 
   </tbody>
 </table>
 
-> 💡 **La Distributiva que Sorprende:**  
-> `A + BC = (A + B)(A + C)`  
-> *Demostración:* `(A+B)(A+C) = AA + AC + AB + BC = A + A(C+B) + BC = A(1) + BC = A + BC`
-
 ---
 
 ## **⚡ 3. Leyes de De Morgan**
@@ -102,9 +98,8 @@ Si intercambias **`+` por `·`** y **`0` por `1`** (sin cambiar las variables), 
 
 - `(A · B)' = A' + B'`
 - `(A + B)' = A' · B'`
-- **Generalizado:** `(A + B + C)' = A' · B' · C'`
 
-#### **📝 Ejercicios Rápidos:**
+#### **📝 Ejercicios**
 <pre><code>1. (A · B · C)' = A' + B' + C'
 2. (A + B'C)'   = A' · (B'C)' = A' · (B'' + C') = A' · (B + C')
 3. (A'B + C)'   = (A'B)' · C' = (A + B') · C'</code></pre>
@@ -112,8 +107,6 @@ Si intercambias **`+` por `·`** y **`0` por `1`** (sin cambiar las variables), 
 ---
 
 ## **🧩 4. Formas Canónicas: Minitérminos y Maxitérminos**
-
-Son las formas estándar de construir la ecuación lógica desde una tabla de verdad.
 
 - 🔴 **Minitérmino (mᵢ):** Representa un **1** en la salida. Se expresa como un **producto** (`AND`). La variable vale 1 sin complementar (`A`) y 0 complementada (`A'`).
 - 🔵 **Maxitérmino (Mᵢ):** Representa un **0** en la salida. Se expresa como una **suma** (`OR`). La variable vale 0 sin complementar (`A`) y 1 complementada (`A'`).
@@ -186,7 +179,7 @@ Son las formas estándar de construir la ecuación lógica desde una tabla de ve
 ### **🟢 1. SOP (Suma de Productos)**
 - **Mira los `1`** de la tabla de verdad.
 - Une los minitérminos con sumas (`+`).
-- **Sintaxis:** `F = ∑m(3, 5, 6, 7)`
+- **Sintaxis:** `F = ∑m()`
 
 ### **🔵 2. POS (Producto de Sumas)**
 - **Mira los `0`** de la tabla de verdad.
