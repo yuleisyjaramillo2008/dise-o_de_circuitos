@@ -12,7 +12,7 @@
 
 ## **🧠 1. El Problema del Mínimo y Adyacencia**
 
-El Álgebra de Boole no siempre garantiza el circuito más pequeño rápidamente. Los **Mapas de Karnaugh (K-Map)** lo resuelven aplicando la regla de adyacencia:
+Los **Mapas de Karnaugh (K-Map)** lo resuelven aplicando la regla de adyacencia:
 
 <pre><code>X · Y + X · Y' = X</code></pre>
 
@@ -35,7 +35,6 @@ El Álgebra de Boole no siempre garantiza el circuito más pequeño rápidamente
       <ul>
         <li><b>Fila (A):</b> 0, 1</li>
         <li><b>Columnas (BC):</b> 00, 01, 11, 10</li>
-        <li>⚠️ <i>Atención: m₃ va antes que m₂ por el Código Gray.</i></li>
       </ul>
     </td>
   </tr>
@@ -63,24 +62,24 @@ El Álgebra de Boole no siempre garantiza el circuito más pequeño rápidamente
 
 ## **📏 3. Reglas de Agrupación e Implicantes**
 
-- 📐 **Tamaño 2ᵏ:** Grupos de 1, 2, 4, 8 o 16 celdas. Cada 2ᵏ elimina k variables.
-- ⏹️ **Forma Rectangular:** Solo rectángulos o cuadrados. Prohibido en L, T o diagonales.
+- 📐 **Tamaño 2ᵏ:** Grupos de 1, 2, 4, 8 o 16 celdas. 
+- ⏹️ **Forma Rectangular:** Solo rectángulos o cuadrados. 
 - 🐘 **Máximo Tamaño:** Entre más grande sea el grupo, más corto queda el término.
 
 ### **Tipos de Implicantes:**
 - 🔹 **Implicante:** Cualquier grupo válido de `1`s o `X`.
 - 🔸 **Implicante Primo:** Grupo que no puede expandirse más.
-- ⭐ **Primo Esencial:** Grupo único que cubre a un `1` específico. **Es obligatorio en la solución.**
+- ⭐ **Primo Esencial:** Grupo único que cubre a un `1`. 
 
 ---
 
-## **🔀 4. Condiciones Indiferentes (Don't Cares: 'X')**
+## **🔀 4. Condiciones Indiferentes ('X')**
 
-Combinaciones de entrada que **nunca ocurren en la práctica** (ejemplo: valores 10 a 15 en código BCD).
+**Nunca ocurren en la práctica** 
 
 - 🟢 **Usar como 1:** Si ayuda a agrandar un grupo de `1`s.
 - 🔴 **Usar como 0:** Si no aporta a la simplificación.
-- ⚠️ **Regla:** **Nunca agrupar solo 'X'**, genera términos inútiles.
+- ⚠️ **Regla:** **Nunca agrupar solo 'X'**.
 
 ---
 
@@ -116,31 +115,11 @@ Cualquier circuito lógico se puede construir usando únicamente compuertas NAND
 </table>
 
 ### **Reglas de Conversión Directa:**
-- **SOP Mínima** → Red **NAND-NAND** (Si una variable entra sola al 2° nivel, entra complementada).
-- **POS Mínima** → Red **NOR-NOR**.
+- **SOP Mínima** → **NAND-NAND**.
+- **POS Mínima** → **NOR-NOR**.
 
 ---
 
-## **🛠️ 6. Caso Práctico: Detector BCD ≥ 5**
-
-**Objetivo:** Detectar si un número BCD es mayor o igual a 5 (`F = ∑m(5,6,7,8,9) + d(10,11,12,13,14,15)`).
-
-### **📋 Comparativa con y sin 'X'**
-
-<table width="100%">
-  <tr>
-    <td width="50%" align="top">
-      <h4><b>Sin 'X' (Sin aprovechar indiferentes)</b></h4>
-      <pre><code>F = AB'C' + A'BD + A'BC
-Costo: 9 Literales</code></pre>
-    </td>
-    <td width="50%" align="top">
-      <h4><b>Con 'X' (Optimizado)</b></h4>
-      <pre><code>F = A + BD + BC
-Costo: 5 Literales</code></pre>
-    </td>
-  </tr>
-</table>
 
 ### **🔌 Circuito Universal NAND-NAND**
 
