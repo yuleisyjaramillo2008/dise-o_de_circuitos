@@ -66,28 +66,25 @@
 
 <table border="0" cellspacing="15" cellpadding="20" align="center">
   <tr align="center">
-    <td bgcolor="#D4E6F1" width="220" style="border-radius: 15px;">
-      <a href="./UNIDAD_1/README.md" style="text-decoration: none;">
-        <h2 style="color: #1B4F72; margin: 0;">📘 UNIDAD 1</h2>
-        <p style="color: #2874A6; font-size: 14px; margin: 10px 0;"><b>Lógica Combinacional</b><br>Semanas 1 a 4</p>
-        <hr color="#A9CCE3">
-        <b style="color: #154360; font-size: 16px;">👉 Entrar a la Unidad</b>
+    <td bgcolor="#E3F2FD" width="220">
+      <h3>📘 UNIDAD 1</h3>
+      <p>Lógica Combinacional<br><small>Semanas 1 a 4</small></p>
+      <a href="./UNIDAD_1/README.md">
+        <img src="https://img.shields.io/badge/Acceder_Unidad_1_➔-2196F3?style=for-the-badge&logoColor=white" alt="Entrar">
       </a>
     </td>
-    <td bgcolor="#EBDEF0" width="220" style="border-radius: 15px;">
-      <a href="./UNIDAD_2/README.md" style="text-decoration: none;">
-        <h2 style="color: #512E5F; margin: 0;">💜 UNIDAD 2</h2>
-        <p style="color: #76448A; font-size: 14px; margin: 10px 0;"><b>Lógica Secuencial</b><br>Memorias & Flip-Flops</p>
-        <hr color="#D7BDE2">
-        <b style="color: #4A235A; font-size: 16px;">👉 Entrar a la Unidad</b>
+    <td bgcolor="#F3E5F5" width="220">
+      <h3>💜 UNIDAD 2</h3>
+      <p>Lógica Secuencial<br><small>Memorias & Flip-Flops</small></p>
+      <a href="./UNIDAD_2/README.md">
+        <img src="https://img.shields.io/badge/Acceder_Unidad_2_➔-9C27B0?style=for-the-badge&logoColor=white" alt="Entrar">
       </a>
     </td>
-    <td bgcolor="#D5F5E3" width="220" style="border-radius: 15px;">
-      <a href="./UNIDAD_3/README.md" style="text-decoration: none;">
-        <h2 style="color: #1E8449; margin: 0;">💚 UNIDAD 3</h2>
-        <p style="color: #27AE60; font-size: 14px; margin: 10px 0;"><b>Descripción en VHDL</b><br>Diseño en FPGA</p>
-        <hr color="#A9DFBF">
-        <b style="color: #145A32; font-size: 16px;">👉 Entrar a la Unidad</b>
+    <td bgcolor="#E8F5E9" width="220">
+      <h3>💚 UNIDAD 3</h3>
+      <p>Descripción VHDL<br><small>Diseño en FPGA</small></p>
+      <a href="./UNIDAD_3/README.md">
+        <img src="https://img.shields.io/badge/Acceder_Unidad_3_➔-4CAF50?style=for-the-badge&logoColor=white" alt="Entrar">
       </a>
     </td>
   </tr>
