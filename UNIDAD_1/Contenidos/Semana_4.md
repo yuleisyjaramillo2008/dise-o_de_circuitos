@@ -11,38 +11,90 @@ La suma columna por columna requiere dos tipos de circuitos según la posición 
 - 🟢 **Semisumador (Half Adder - HA):** Solo suma 2 bits (`A` y `B`). Se usa únicamente en la **columna 0** porque no recibe acarreo previo.
 - 🔵 **Sumador Completo (Full Adder - FA):** Suma 3 bits (`A`, `B` y el acarreo de entrada `Cin`). Se usa en las **columnas 1, 2, 3...**
 
-| Tipo de Sumador | Entradas | Ecuación de Suma (S) | Ecuación de Acarreo (Cout) |
-| :---: | :---: | :---: | :---: |
-| **Semisumador (HA)** | A, B | S = A ⊕ B | Cout = A · B |
-| **Sumador Completo (FA)** | A, B, Cin | S = A ⊕ B ⊕ Cin *(Impar de 1s)* | Cout = AB + A·Cin + B·Cin *(Al menos dos 1s)* |
+<table width="100%">
+  <thead>
+    <tr align="center">
+      <th>Tipo de Sumador</th>
+      <th>Entradas</th>
+      <th>Ecuación de Suma (S)</th>
+      <th>Ecuación de Acarreo (Cout)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr align="center">
+      <td><b>Semisumador (HA)</b></td>
+      <td>A, B</td>
+      <td>S = A ⊕ B</td>
+      <td>Cout = A · B</td>
+    </tr>
+    <tr align="center">
+      <td><b>Sumador Completo (FA)</b></td>
+      <td>A, B, Cin</td>
+      <td>S = A ⊕ B ⊕ Cin <i>(Impar de 1s)</i></td>
+      <td>Cout = AB + A·Cin + B·Cin <i>(Al menos dos 1s)</i></td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 
 ## **🗺️ 2. Tablas de Verdad y Mapas de Karnaugh (Full Adder)**
 
-### **📋 Tabla de Verdad**
+### **📋 Tabla de Verdad del Sumador Completo**
 
-| A | B | Cin | N° de 1s | Acarreo (Cout) | Suma (S) |
-| :-: | :-: | :-: | :-: | :-: | :-: |
-| 0 | 0 | 0 | 0 | 0 | 0 |
-| 0 | 0 | 1 | 1 | 0 | **1** |
-| 0 | 1 | 0 | 1 | 0 | **1** |
-| 0 | 1 | 1 | 2 | **1** | 0 |
-| 1 | 0 | 0 | 1 | 0 | **1** |
-| 1 | 0 | 1 | 2 | **1** | 0 |
-| 1 | 1 | 0 | 2 | **1** | 0 |
-| 1 | 1 | 1 | 3 | **1** | **1** |
+<table width="100%">
+  <thead>
+    <tr align="center">
+      <th>A</th>
+      <th>B</th>
+      <th>Cin</th>
+      <th>N° de 1s</th>
+      <th>Acarreo (Cout)</th>
+      <th>Suma (S)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr align="center"><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+    <tr align="center"><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td><b>1</b></td></tr>
+    <tr align="center"><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td><b>1</b></td></tr>
+    <tr align="center"><td>0</td><td>1</td><td>1</td><td>2</td><td><b>1</b></td><td>0</td></tr>
+    <tr align="center"><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td><b>1</b></td></tr>
+    <tr align="center"><td>1</td><td>0</td><td>1</td><td>2</td><td><b>1</b></td><td>0</td></tr>
+    <tr align="center"><td>1</td><td>1</td><td>0</td><td>2</td><td><b>1</b></td><td>0</td></tr>
+    <tr align="center"><td>1</td><td>1</td><td>1</td><td>3</td><td><b>1</b></td><td><b>1</b></td></tr>
+  </tbody>
+</table>
 
-### **🧩 Análisis Ecuacional de los Mapas K**
+### **🧩 Circuito Esquemático del Sumador Completo**
 
-- **Mapa K de la Suma (S):** Los `1`s quedan en posición de ajedrez (ninguno tiene vecinos). No admite simplificación adyacente y se expresa directamente como **XOR triple** (`S = A ⊕ B ⊕ Cin`).
-- **Mapa K del Acarreo (Cout):** Forma 3 grupos de 2 celdas. Representa la regla de mayoría: `Cout = AB + A·Cin + B·Cin`.
+<table width="100%">
+  <tr>
+    <td width="40%" align="center" valign="middle">
+      <img src="../../full_adder.png" alt="Esquema Sumador Completo" width="220">
+    </td>
+    <td width="60%" valign="middle">
+      <h4><b>Análisis Ecuacional:</b></h4>
+      <ul>
+        <li><b>Suma (S):</b> Los 1s forman un patrón en ajedrez (impar de 1s activos) &rarr; <code>S = A ⊕ B ⊕ Cin</code></li>
+        <li><b>Acarreo (Cout):</b> Forma 3 grupos de 2 celdas (regla de mayoría) &rarr; <code>Cout = AB + A·Cin + B·Cin</code></li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
 ---
 
 ## **⛓️ 3. Sumador en Cadena (Ripple Carry Adder) y Retardo**
 
 Para sumar números de N bits se encadenan N sumadores completos conectando la salida `Cout` de cada etapa al `Cin` de la siguiente.
+
+<table width="100%">
+  <tr>
+    <td width="100%" align="center" valign="middle">
+      <img src="../../sumador_4bits.png" alt="Sumador de 4 bits en cadena" width="85%">
+    </td>
+  </tr>
+</table>
 
 - 🌊 **Efecto Ola (Ripple):** El resultado final se completa de derecha a izquierda conforme el acarreo se propaga etapa por etapa.
 - ⏱️ **Estimación del Retardo:** Asumiendo ≈ 10 ns por compuerta y que el acarreo cruza ≈ 2 compuertas por etapa:
@@ -59,8 +111,20 @@ Para sumar números de N bits se encadenan N sumadores completos conectando la s
 
 Usando la propiedad de **Complemento a Dos** (`A - B = A + (-B)`) y compuertas `XOR` como inversores controlados por una señal `M`:
 
-- 🟢 **Modo Suma (`M = 0`):** `B` pasa intacto y `Cin = 0`.
-- 🔴 **Modo Resta (`M = 1`):** `B` se invierte bit a bit (`XOR`) y entra `Cin = 1` al primer sumador (aporta el +1 de C2).
+<table width="100%">
+  <tr>
+    <td width="45%" align="center" valign="middle">
+      <img src="../../sumador_restador.png" alt="Esquema Sumador Restador" width="100%">
+    </td>
+    <td width="55%" valign="middle">
+      <h4><b>Modos de Operación:</b></h4>
+      <ul>
+        <li>🟢 <b>Modo Suma (<code>M = 0</code>):</b> <code>B</code> pasa intacto y <code>Cin = 0</code>.</li>
+        <li>🔴 <b>Modo Resta (<code>M = 1</code>):</b> <code>B</code> se invierte bit a bit (<code>XOR</code>) y entra <code>Cin = 1</code> al primer sumador (aporta el +1 de C2).</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
 ---
 
