@@ -1,3 +1,9 @@
+<div align="right">
+  <a href="#final">
+    <img src="https://img.shields.io/badge/⬇️_Ir_al_Final-FF9800?style=for-the-badge&logoColor=white" alt="Ir abajo">
+  </a>
+</div>
+
 <div align="center">
 
 # ⚙️ **ÁLGEBRA DE BOOLE Y FORMAS CANÓNICAS** ⚙️
@@ -260,3 +266,29 @@ F = BC(1)       + AC(1)       + AB(1)</code></pre>
     </td>
   </tr>
 </table>
+
+<br><hr>
+
+<a name="final"></a>
+
+<div align="center">
+  <table border="0" cellspacing="10" cellpadding="10">
+    <tr align="center">
+      <td bgcolor="#ECEFF1" width="180">
+        <a href="./Semana_1.md">
+          <img src="https://img.shields.io/badge/⬅️_Semana_1-2196F3?style=for-the-badge&logoColor=white" alt="Anterior">
+        </a>
+      </td>
+      <td bgcolor="#E8F5E9" width="160">
+        <a href="#top">
+          <img src="https://img.shields.io/badge/⬆️_Subir_al_Inicio-4CAF50?style=for-the-badge&logoColor=white" alt="Subir">
+        </a>
+      </td>
+      <td bgcolor="#FFF3E0" width="180">
+        <a href="./Semana_3.md">
+          <img src="https://img.shields.io/badge/Semana_3_➡️-4CAF50?style=for-the-badge&logoColor=white" alt="Siguiente">
+        </a>
+      </td>
+    </tr>
+  </table>
+</div>
