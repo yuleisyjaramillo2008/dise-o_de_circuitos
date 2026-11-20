@@ -16,7 +16,7 @@
 
 ### 🧩 Partes de un MUX
 
-| 🏷️ Parte | 📖 Explicación | 💡 Ejemplo |
+| 🏷️ Parte | 📖 Explicación | 💡 Ejemplo explicativo |
 | :--- | :--- | :--- |
 | <span style="color: #0066cc;"><strong>📥 2<sup>n</sup> entradas de datos</strong></span> | Los datos de entrada solo pueden ser potencias de 2 | <code>2<sup>3</sup> = 8</code> (I<sub>0</sub>, I<sub>1</sub>, I<sub>2</sub>, I<sub>3</sub>, I<sub>4</sub>, I<sub>5</sub>, I<sub>6</sub>, I<sub>7</sub>) |
 | <span style="color: #6f42c1;"><strong>🎛️ n líneas de selección</strong></span> | De la fórmula 2<sup>n</sup> que es igual a las entradas, <em>n</em> es la cantidad de bits que controlan la selección | <code>8 = 2<sup>3</sup></code> por lo tanto <code>n = 3</code>, es decir, habrá tres líneas de selección (3 bits) |
@@ -25,6 +25,7 @@
 
 ---
 
+***EJEMPLOS:***
 
 
 
