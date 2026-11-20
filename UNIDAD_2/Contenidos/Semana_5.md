@@ -6,6 +6,10 @@
 ---
 
 ## 🔀 Multiplexor (MUX)
+<div align="center">
+  <img src="../Imagenes/multiplexor_real.jpg" alt="Circuito integrado Multiplexor real" width="450">
+  <p><em>Figura 1: Multiplexor real.</em></p>
+</div>
 
 <div style="background-color: #f0f7ff; border-left: 5px solid #0066cc; padding: 14px; border-radius: 6px; margin-bottom: 16px;">
   <strong style="color: #004c99; font-size: 1.05em;">📘 Definición:</strong><br>
