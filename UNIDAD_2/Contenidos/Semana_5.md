@@ -85,5 +85,32 @@ Siguiendo el ejemplo de del MUX 4:1 se necesitara: <br>
 * 2 NOT (para S₀` y S₁`´).
 * 4 AND  de tres entradas.
 * 1 OR de 4 entradas. 
+<div align="center">
+  <img src="../Imagenes/MUX_4Entradas.png" alt="Circuito lógico de un Multiplexor de 4 entradas" width="600">
+  <p><em>Figura 2: Implementación de un Multiplexor 4:1 con compuertas lógicas (NOT, AND y OR).</em></p>
+</div>
+
+En este circuito mediante las líneas de selección se eligió la entrada (01 = 2) que estará en la salida. Y como se puede ver I1 (la segunda entrada) es igual a 1 y Y = 1. 
+
+### Expanción 
+Un MUX más grande se arma con MUX más chicos. Un MUX 8:1 son dos MUX de 4:1 que comparten S1 y S0 más un MUX 2:1 controlado por S2 que elige cuál de los dos resultados pasa. 
+
+<br>
+
+---
+
+<div align="center">
+  <sub>✦ • ✦ • ✦</sub>
+</div>
+
+---
+
+<br>
+
+---
+
+## 🔀 Demultiplexor (DEMUX)
+
+
 
 
