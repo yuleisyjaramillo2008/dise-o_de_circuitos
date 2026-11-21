@@ -46,6 +46,44 @@ Tiene 4 entradas, es decir, 2² por lo tanto n=2 y habrá 2 líneas de selecció
 <pre><code>Y = S<sub>1</sub>' · S<sub>0</sub>' · I<sub>0</sub> + S<sub>1</sub>' · S<sub>0</sub> · I<sub>1</sub> + S<sub>1</sub> · S<sub>0</sub>' · I<sub>2</sub> + S<sub>1</sub> · S<sub>0</sub> · I<sub>3</sub></code></pre>
 </div>
 
-**Explicación de la ECUACIÓN BOOLEANA**
+---
+
+### 🧮 Ecuación Booleana
+
+Para seleccionar una entrada y bloquear las demás se usan las compuertas lógicas **AND** y **OR**. Tomando el ejemplo anterior:
+
+<div align="center">
+<pre><code>Y = S<sub>1</sub>' · S<sub>0</sub>' · I<sub>0</sub> + S<sub>1</sub>' · S<sub>0</sub> · I<sub>1</sub> + S<sub>1</sub> · S<sub>0</sub>' · I<sub>2</sub> + S<sub>1</sub> · S<sub>0</sub> · I<sub>3</sub></code></pre>
+</div>
+
+<div style="background-color: #f8f9fa; border-left: 5px solid #6f42c1; padding: 14px; border-radius: 6px; margin-bottom: 16px;">
+  <strong style="color: #4c2889;">⚙️ ¿Cómo funciona la selección?</strong>
+  <ul>
+    <li><strong>Minitérminos en S:</strong> Esta ecuación representa un minitérmino en <code>S</code> (donde <code>S = 1</code> y <code>S' = 0</code>), y cada combinación de <code>S</code> representa un número binario (<code>00</code>, <code>01</code>, <code>10</code> y <code>11</code>).</li>
+    <li><strong>Condición de paso (AND):</strong> Solo deja pasar la entrada cuando la multiplicación (<strong>AND</strong>) entre las líneas de selección es <code>1</code>, ya que así no afecta al valor de la entrada.</li>
+    <li><strong>Dependencia de la salida:</strong> Estas combinaciones de <code>S</code> se multiplican (<strong>AND</strong>) con una entrada (<code>I</code>) porque, siempre y cuando las líneas de selección sean iguales a <code>1</code>, el resultado dependerá o será igual a la entrada (<code>I</code>).</li>
+  </ul>
+</div>
+
+#### 📊 Comportamiento de la compuerta AND como llave de paso
+
+<div align="center">
+
+| Selección (`S₁ · S₀`) | Entrada (`I`) | Salida (`Y`) | Estado |
+| :---: | :---: | :---: | :--- |
+| `0` | `0` | `0` | 🔴 Bloqueado (apagado) |
+| `0` | `1` | `0` | 🔴 Bloqueado (apagado) |
+| `1` | `0` | `0` | 🟢 Pasa el dato `I` (`0`) |
+| `1` | `1` | `1` | 🟢 Pasa el dato `I` (`1`) |
+
+</div>
+
+---
+
+### Formación de los circuitos 
+Siguiendo el ejemplo de del MUX 4:1 se necesitara: <br>
+* 2 NOT (para S₀` y S₁`´).
+* 4 AND  de tres entradas.
+* 1 OR de 4 entradas. 
 
 
