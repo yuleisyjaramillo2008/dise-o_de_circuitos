@@ -30,6 +30,22 @@
 ---
 
 ***EJEMPLOS:***
+<br>
+**MUX 4:1:**
+Tiene 4 entradas, es decir, 2² por lo tanto n=2 y habrá 2 líneas de selección. 
+| S1 | S0 | Y |
+| :--- | :--- | :--- |
+| 0 | 0 | I0 |
+| 0 | 1 | I1 |
+| 1 | 0 | I2 |
+| 1 | 1 | I3 |
 
+<br>
+
+<div align="center">
+<pre><code>Y = S<sub>1</sub>' · S<sub>0</sub>' · I<sub>0</sub> + S<sub>1</sub>' · S<sub>0</sub> · I<sub>1</sub> + S<sub>1</sub> · S<sub>0</sub>' · I<sub>2</sub> + S<sub>1</sub> · S<sub>0</sub> · I<sub>3</sub></code></pre>
+</div>
+
+**Explicación de la ECUACIÓN BOOLEANA**
 
 
