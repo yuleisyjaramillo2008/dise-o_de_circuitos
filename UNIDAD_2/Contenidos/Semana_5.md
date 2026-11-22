@@ -154,12 +154,19 @@ Un MUX más grande se arma con MUX más chicos. Un MUX 8:1 son dos MUX de 4:1 qu
 
 <br>
 
+
+
 <div align="center">
 <pre><code>Y = E · ( S<sub>2</sub>'·S<sub>1</sub>'·S<sub>0</sub>'·I<sub>0</sub> + S<sub>2</sub>'·S<sub>1</sub>'·S<sub>0</sub>·I<sub>1</sub> + S<sub>2</sub>'·S<sub>1</sub>·S<sub>0</sub>'·I<sub>2</sub> + S<sub>2</sub>'·S<sub>1</sub>·S<sub>0</sub>·I<sub>3</sub> +
           S<sub>2</sub>·S<sub>1</sub>'·S<sub>0</sub>'·I<sub>4</sub> + S<sub>2</sub>·S<sub>1</sub>'·S<sub>0</sub>·I<sub>5</sub> + S<sub>2</sub>·S<sub>1</sub>·S<sub>0</sub>'·I<sub>6</sub> + S<sub>2</sub>·S<sub>1</sub>·S<sub>0</sub>·I<sub>7</sub> )</code></pre>
 </div>
 
 <br>
+
+<div align="center">
+  <img src="../Imagenes/MUX_8Entradas_Circuito.png" alt="Circuito lógico de un Multiplexor 8:1 con Enable" width="650">
+  <p><em>Figura 4: Simulación en Logisim del Multiplexor 8:1 con entrada de habilitación (E).</em></p>
+</div>
 
 <div align="center">
 
@@ -198,7 +205,24 @@ Un MUX más grande se arma con MUX más chicos. Un MUX 8:1 son dos MUX de 4:1 qu
 
 
 ## 🔀 Demultiplexor (DEMUX)
+
+<div style="background-color: #f0f7ff; border-left: 5px solid #0066cc; padding: 14px; border-radius: 6px; margin-bottom: 16px;">
+  <strong style="color: #004c99; font-size: 1.05em;">📘 Definición:</strong><br>
+  
 Un demultiplexor hace lo contrario del MUX: toma una sola entrada de datos (D) y la envía a una de varias salidas (la que indica la salida de selección), esta salida toma el valor lógico de la entrada y las demás quedan en 0. 
+
+---
+
+### 🧩 Partes de un DEMUX
+
+| 🏷️ Parte | 📖 Explicación | 💡 Ejemplo explicativo |
+| :--- | :--- | :--- |
+| <span style="color: #198754;"><strong>📥 1 entrada de datos (D)</strong></span> | En todo DEMUX siempre habrá una sola entrada de datos, que es la señal que se quiere repartir | Entrada <strong>D</strong> |
+| <span style="color: #6f42c1;"><strong>🎛️ n líneas de selección</strong></span> | Son los bits que indican por cuál salida debe salir el dato. Si hay 2<sup>n</sup> salidas, <em>n</em> es la cantidad de bits de selección | <code>8 = 2<sup>3</sup></code> por lo tanto <code>n = 3</code>, es decir, habrá tres líneas de selección (3 bits) |
+| <span style="color: #0066cc;"><strong>📤 2<sup>n</sup> salidas</strong></span> | La cantidad de salidas es una potencia de 2. Solo una toma el valor de D y las demás quedan en 0 | <code>2<sup>3</sup> = 8</code> (Y<sub>0</sub>, Y<sub>1</sub>, Y<sub>2</sub>, Y<sub>3</sub>, Y<sub>4</sub>, Y<sub>5</sub>, Y<sub>6</sub>, Y<sub>7</sub>) |
+| <span style="color: #d97706;"><strong>🔌 OPCIONAL:</strong></span> <strong>Entrada de habilitación</strong> | Es una entrada adicional que apaga o enciende el circuito | <ul><li><span style="color: #198754;"><strong>Si E=1</strong></span> el DEMUX funciona de manera normal.</li><li><span style="color: #dc3545;"><strong>Si E=0</strong></span> sin importar D ni las líneas de selección, todas las salidas (Y) valen 0.</li></ul> |
+
+<br>
 
 ---
 
@@ -212,3 +236,70 @@ Un demultiplexor hace lo contrario del MUX: toma una sola entrada de datos (D) y
 | 1 | 1 | 0 | 0 | 0 | D |
 
 <br>
+
+<div align="center">
+<pre><code>Y<sub>0</sub> = D · S<sub>1</sub>' · S<sub>0</sub>'      Y<sub>1</sub> = D · S<sub>1</sub>' · S<sub>0</sub>      Y<sub>2</sub> = D · S<sub>1</sub> · S<sub>0</sub>'      Y<sub>3</sub> = D · S<sub>1</sub> · S<sub>0</sub></code></pre>
+</div>
+
+<br>
+
+---
+
+### 🧮 Ecuación Booleana
+
+Para enviar el dato a una sola salida y dejar las demás en 0 también se usan compuertas **AND**, pero aquí **no lleva OR**, porque cada salida es independiente. Tomando el ejemplo anterior (DEMUX 1:4):
+
+<div align="center">
+<pre><code>Y<sub>0</sub> = D · S<sub>1</sub>' · S<sub>0</sub>'
+Y<sub>1</sub> = D · S<sub>1</sub>' · S<sub>0</sub>
+Y<sub>2</sub> = D · S<sub>1</sub> · S<sub>0</sub>'
+Y<sub>3</sub> = D · S<sub>1</sub> · S<sub>0</sub></code></pre>
+</div>
+
+<div style="background-color: #f8f9fa; border-left: 5px solid #6f42c1; padding: 14px; border-radius: 6px; margin-bottom: 16px;">
+  <strong style="color: #4c2889;">⚙️ ¿Cómo funciona la selección?</strong>
+  <ul>
+    <li><strong>Minitérminos en S:</strong> Cada ecuación contiene un minitérmino en <code>S</code> (donde <code>S = 1</code> y <code>S' = 0</code>), y cada combinación de <code>S</code> representa un número binario (<code>00</code>, <code>01</code>, <code>10</code> y <code>11</code>) que corresponde a una salida (<code>Y0</code>, <code>Y1</code>, <code>Y2</code> y <code>Y3</code>).</li>
+    <li><strong>Condición de paso (AND):</strong> El dato <code>D</code> solo llega a la salida cuando el minitérmino de <code>S</code> vale <code>1</code>, ya que así la multiplicación (<strong>AND</strong>) no cambia el valor de <code>D</code>.</li>
+    <li><strong>Salidas bloqueadas:</strong> En las demás salidas el minitérmino de <code>S</code> vale <code>0</code>, y como cualquier cosa multiplicada por <code>0</code> da <code>0</code>, esas salidas quedan apagadas sin importar el valor de <code>D</code>.</li>
+  </ul>
+</div>
+
+#### 📊 Comportamiento de la compuerta AND como llave de paso
+
+<div align="center">
+
+| Minitérmino de S (`1` = seleccionado) | Dato (`D`) | Salida (`Y`) | Estado |
+| :---: | :---: | :---: | :--- |
+| `0` | `0` | `0` | 🔴 Bloqueado (apagado) |
+| `0` | `1` | `0` | 🔴 Bloqueado (apagado) |
+| `1` | `0` | `0` | 🟢 Pasa el dato `D` (`0`) |
+| `1` | `1` | `1` | 🟢 Pasa el dato `D` (`1`) |
+
+</div>
+
+#### 🧪 Ejemplo numérico
+
+Con `D = 1` y `S₁ S₀ = 10` (que es 2 en decimal):
+
+| Salida | Cálculo | Resultado |
+| :---: | :--- | :---: |
+| `Y0` | `1 · 1 · 0 = 0` | `0` |
+| `Y1` | `1 · 1 · 1 · ... ` | `0` |
+| `Y2` | `1 · 1 · 1 = 1` | `1` ✅ |
+| `Y3` | `1 · 1 · 0 = 0` | `0` |
+
+El dato `D` sale únicamente por **Y2**. Si `D = 0`, todas las salidas valen `0`.
+
+---
+
+### 🔧 Formación del circuito
+
+Siguiendo el ejemplo del DEMUX 1:4 se necesitará:
+
+* 2 NOT (para S₁' y S₀').
+* 4 AND de tres entradas (una por cada salida).
+
+Total: **6 compuertas**.
+
+
