@@ -328,7 +328,10 @@ Total: **6 compuertas**. <br>
 
 Un DEMUX más grande se arma con DEMUX más chicos. Un **DEMUX 1:16** es un **DEMUX 1:2** controlado por **S3**, que decide cuál de los dos DEMUX 1:8 recibe el dato **D**, más dos **DEMUX 1:8** que comparten **S2, S1 y S0**.
 
-
+<div align="center">
+  <img src="../Imagenes/demux_4.webp" alt="Demultiplexor de 4 salidas" width="550">
+  <p><em>Figura 7: Demultiplexor 1:4.</em></p>
+</div>
 
 > **Nota sobre la figura:** en la imagen original las líneas de selección están rotuladas S1, S2, S3 y S1. En este cuaderno se leen así: **S3** controla el DEMUX 1x2, y **S2, S1 y S0** se comparten con los dos DEMUX 1:8. La entrada **I** de la figura es la entrada **D**.
 
