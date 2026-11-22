@@ -344,4 +344,64 @@ El DEMUX 1:8 que **no** es elegido recibe 0, así que todas sus salidas quedan e
 
 **Ejemplo:** con S3 S2 S1 S0 = 1010 (que es 10 en decimal), el dato sale por **Y10**.
 
+<br>
+
+<div align="center" style="background-color: #f6f8fa; border: 2px solid #0969da; border-radius: 10px; padding: 12px 20px; margin: 20px 0;">
+  <h3 style="margin: 0; color: #0969da;">⚡ EJERCICIOS ⚡</h3>
+  <sub>Práctica de Demultiplexores (DEMUX)</sub>
+</div>
+
+<br>
+
+<div style="background-color: #fff8c5; border-left: 5px solid #d4a72c; padding: 14px; border-radius: 6px; margin-bottom: 16px;">
+  <strong style="color: #7d4e00; font-size: 1.05em;">📋 Enunciado:</strong><br>
+  Un sistema de distribución automatizado recibe una señal única de control (<code>D</code>) desde un microcontrolador y debe enrutarla hacia <strong>8 actuadores independientes</strong> (<code>Y<sub>0</sub></code> a <code>Y<sub>7</sub></code>), gobernados por un selector binario de 3 bits y un botón maestro de seguridad (<code>E</code>). Si se envía el dato <code>D = 1</code> con el interruptor maestro activo (<code>E = 1</code>), <strong>¿qué arquitectura de demultiplexor (dimensionamiento, ecuaciones booleanas, compuertas, integrado comercial y expansión) se requiere, y cuál será el estado en las 8 salidas cuando <code>S<sub>2</sub>S<sub>1</sub>S<sub>0</sub> = 101</code> y luego al desactivar <code>E = 0</code>?</strong>
+</div>
+
+| Parámetro | Valor / Dato |
+| :--- | :--- |
+| **Tipo de circuito** | DEMUX 1:8 con Enable |
+| **Entrada de datos** | `D` (1 línea única de información) |
+| **Líneas de selección (<em>n</em>)** | <code>n = 3</code> (<code>S<sub>2</sub></code>, <code>S<sub>1</sub></code>, <code>S<sub>0</sub></code>) |
+| **Salidas de datos (2<sup>n</sup>)** | <code>2<sup>3</sup> = 8</code> (<code>Y<sub>0</sub></code> a <code>Y<sub>7</sub></code>) |
+| **Habilitación** | `E` (1 bit de control maestro) |
+| **Compuertas discretas** | 3 NOT + 8 AND (5 ent.: `D`, `E`, `S2`, `S1`, `S0`) = **11 compuertas** *(sin OR)* |
+| **Integrado 74LS** | **74LS138** (Decodificador/DEMUX 1:8 usando Enable como entrada de datos) |
+| **Expansión** | 1 DEMUX 1:2 en `S2` + 2 DEMUX 1:4 (**74LS139**) compartiendo `S1, S0` |
+
+<br>
+
+<div align="center">
+<pre><code>Y<sub>0</sub> = E · D · S<sub>2</sub>' · S<sub>1</sub>' · S<sub>0</sub>'       Y<sub>4</sub> = E · D · S<sub>2</sub> · S<sub>1</sub>' · S<sub>0</sub>'
+Y<sub>1</sub> = E · D · S<sub>2</sub>' · S<sub>1</sub>' · S<sub>0</sub>        Y<sub>5</sub> = E · D · S<sub>2</sub> · S<sub>1</sub>' · S<sub>0</sub>
+Y<sub>2</sub> = E · D · S<sub>2</sub>' · S<sub>1</sub> · S<sub>0</sub>'        Y<sub>6</sub> = E · D · S<sub>2</sub> · S<sub>1</sub> · S<sub>0</sub>'
+Y<sub>3</sub> = E · D · S<sub>2</sub>' · S<sub>1</sub> · S<sub>0</sub>         Y<sub>7</sub> = E · D · S<sub>2</sub> · S<sub>1</sub> · S<sub>0</sub></code></pre>
+</div>
+
+<br>
+
+<div align="center">
+
+| `E` | `D` | `S2 S1 S0` | Canal activo | `Y0` | `Y1` | `Y2` | `Y3` | `Y4` | `Y5` | `Y6` | `Y7` |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| `1` | `1` | `000` | `Y0` | `1` | `0` | `0` | `0` | `0` | `0` | `0` | `0` |
+| `1` | `1` | `001` | `Y1` | `0` | `1` | `0` | `0` | `0` | `0` | `0` | `0` |
+| `1` | `1` | `010` | `Y2` | `0` | `0` | `1` | `0` | `0` | `0` | `0` | `0` |
+| `1` | `1` | `011` | `Y3` | `0` | `0` | `0` | `1` | `0` | `0` | `0` | `0` |
+| `1` | `1` | `100` | `Y4` | `0` | `0` | `0` | `0` | `1` | `0` | `0` | `0` |
+| **`1`** | **`1`** | **`101`** | **`Y5`** | **`0`** | **`0`** | **`0`** | **`0`** | **`0`** | **`1`** | **`0`** | **`0`** |
+| `1` | `1` | `110` | `Y6` | `0` | `0` | `0` | `0` | `0` | `0` | `1` | `0` |
+| `1` | `1` | `111` | `Y7` | `0` | `0` | `0` | `0` | `0` | `0` | `0` | `1` |
+| **`0`** | **`X`** | **`XXX`** | *Ninguno* | **`0`** | **`0`** | **`0`** | **`0`** | **`0`** | **`0`** | **`0`** | **`0`** |
+
+</div>
+
+<div style="background-color: #e6ffed; border-left: 5px solid #198754; padding: 12px; border-radius: 6px; margin-top: 12px;">
+  <strong style="color: #146c43;">✅ Respuesta:</strong> Con <code>E = 1</code>, <code>D = 1</code> y <code>S<sub>2</sub>S<sub>1</sub>S<sub>0</sub> = 101</code>, el dato se enruta únicamente hacia la salida <strong><code>Y<sub>5</sub> = 1</code></strong> mientras las demás quedan en <code>0</code>; al desactivar <code>E = 0</code>, <strong>todas las salidas (<code>Y<sub>0</sub></code> a <code>Y<sub>7</sub></code>) pasan a <code>0</code></strong>.
+</div>
+
+<br>
+
+---
+
 
