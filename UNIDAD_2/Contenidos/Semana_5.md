@@ -31,6 +31,19 @@
 
 ***EJEMPLOS:***
 <br>
+**MUX 2:1:** Tiene 2 entradas, por lo tanto tiene una línea de control. <br>
+
+| S | Y |
+| :--- | :--- |
+| 0 | I0 |
+| 1 | I1 |
+
+<div align="center">
+<pre><code>Y = S' · I<sub>0</sub> + S · I<sub>1</sub></code></pre>
+</div>
+
+---
+
 **MUX 4:1:**
 Tiene 4 entradas, es decir, 2² por lo tanto n=2 y habrá 2 líneas de selección. 
 | S1 | S0 | Y |
@@ -84,16 +97,90 @@ Para seleccionar una entrada y bloquear las demás se usan las compuertas lógic
 Siguiendo el ejemplo de del MUX 4:1 se necesitara: <br>
 * 2 NOT (para S₀` y S₁`´).
 * 4 AND  de tres entradas.
-* 1 OR de 4 entradas. 
+* 1 OR de 4 entradas.
+***🔢 Integrados de la familia 74LS*** <br>
+
+| Integrado | Qué contiene |
+| :--- | :--- |
+| 74LS157 | 4 multiplexores 2:1 |
+| 74LS153 | 2 multiplexores 4:1 |
+| 74LS151 | 1 multiplexor 8:1 |
+| 74LS150 | 1 multiplexor 16:1 |
+<br>
+
 <div align="center">
   <img src="../Imagenes/MUX_4Entradas.png" alt="Circuito lógico de un Multiplexor de 4 entradas" width="600">
   <p><em>Figura 2: Implementación de un Multiplexor 4:1 con compuertas lógicas (NOT, AND y OR).</em></p>
 </div>
 
-En este circuito mediante las líneas de selección se eligió la entrada (01 = 2) que estará en la salida. Y como se puede ver I1 (la segunda entrada) es igual a 1 y Y = 1. 
+En este circuito mediante las líneas de selección se eligió la entrada (01 = 2) que estará en la salida. Y como se puede ver I1 (la segunda entrada) es igual a 1 y Y = 1.  <br>
+
+---
 
 ### Expanción 
 Un MUX más grande se arma con MUX más chicos. Un MUX 8:1 son dos MUX de 4:1 que comparten S1 y S0 más un MUX 2:1 controlado por S2 que elige cuál de los dos resultados pasa. 
+
+<div align="center">
+  <img src="../Imagenes/Expansion_8entradas.jpg" alt="Expansión de Multiplexor a 8 entradas" width="550">
+  <p><em>Figura 3: Expansión de un Multiplexor a 8 entradas (MUX 8:1).</em></p>
+</div>
+
+<br>
+
+<div align="center" style="background-color: #f6f8fa; border: 2px solid #0969da; border-radius: 10px; padding: 12px 20px; margin: 20px 0;">
+  <h3 style="margin: 0; color: #0969da;">⚡ EJERCICIOS ⚡</h3>
+  <sub>Práctica de Multiplexores (MUX)</sub>
+</div>
+
+<br>
+<div style="background-color: #fff8c5; border-left: 5px solid #d4a72c; padding: 14px; border-radius: 6px; margin-bottom: 16px;">
+  <strong style="color: #7d4e00; font-size: 1.05em;">📋 Enunciado:</strong><br>
+  Una planta industrial requiere supervisar <strong>8 sensores digitales</strong> (<code>I<sub>0</sub></code> a <code>I<sub>7</sub></code>) enviando su señal a una única línea de monitoreo (<code>Y</code>), controlada por un selector binario y un interruptor maestro de mantenimiento (<code>E</code>). Si los sensores registran <code>I<sub>0</sub>=0, I<sub>1</sub>=1, I<sub>2</sub>=0, I<sub>3</sub>=1, I<sub>4</sub>=1, I<sub>5</sub>=0, I<sub>6</sub>=1, I<sub>7</sub>=0</code>, <strong>¿qué arquitectura de multiplexor (dimensionamiento, ecuación, compuertas, integrado comercial y expansión) se requiere, y cuál será el valor en la salida <code>Y</code> cuando <code>S<sub>2</sub>S<sub>1</sub>S<sub>0</sub> = 110</code> con <code>E = 1</code> y luego al cambiar a <code>E = 0</code>?</strong>
+</div>
+
+<div align="center">
+
+| Parámetro | Valor / Dato |
+| :--- | :--- |
+| **Tipo de circuito** | MUX 8:1 con Enable |
+| **Entradas de datos (2<sup>n</sup>)** | <code>2<sup>3</sup> = 8</code> (<code>I<sub>0</sub></code> a <code>I<sub>7</sub></code>) |
+| **Líneas de selección (<em>n</em>)** | <code>n = 3</code> (<code>S<sub>2</sub></code>, <code>S<sub>1</sub></code>, <code>S<sub>0</sub></code>) |
+| **Habilitación / Salida** | <code>E</code> (1 bit) / <code>Y</code> (1 salida) |
+| **Compuertas discretas** | 3 NOT + 8 AND (4 ent.) + 1 OR (8 ent.) + 1 AND (2 ent.) = **13 compuertas** |
+| **Integrado 74LS** | **74LS151** (1 MUX 8:1) |
+| **Expansión** | 2 MUX 4:1 (**74LS153**) en <code>S<sub>1</sub>, S<sub>0</sub></code> + 1 MUX 2:1 (**74LS157**) en <code>S<sub>2</sub></code> |
+
+</div>
+
+<br>
+
+<div align="center">
+<pre><code>Y = E · ( S<sub>2</sub>'·S<sub>1</sub>'·S<sub>0</sub>'·I<sub>0</sub> + S<sub>2</sub>'·S<sub>1</sub>'·S<sub>0</sub>·I<sub>1</sub> + S<sub>2</sub>'·S<sub>1</sub>·S<sub>0</sub>'·I<sub>2</sub> + S<sub>2</sub>'·S<sub>1</sub>·S<sub>0</sub>·I<sub>3</sub> +
+          S<sub>2</sub>·S<sub>1</sub>'·S<sub>0</sub>'·I<sub>4</sub> + S<sub>2</sub>·S<sub>1</sub>'·S<sub>0</sub>·I<sub>5</sub> + S<sub>2</sub>·S<sub>1</sub>·S<sub>0</sub>'·I<sub>6</sub> + S<sub>2</sub>·S<sub>1</sub>·S<sub>0</sub>·I<sub>7</sub> )</code></pre>
+</div>
+
+<br>
+
+<div align="center">
+
+| `E` | `S2 S1 S0` | Minitérmino activo (`= 1`) | Canal | Dato (`I`) | Salida (`Y`) |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| `1` | `000` | `S2' · S1' · S0'` | `I0` | `0` | `0` |
+| `1` | `001` | `S2' · S1' · S0` | `I1` | `1` | `1` |
+| `1` | `010` | `S2' · S1 · S0'` | `I2` | `0` | `0` |
+| `1` | `011` | `S2' · S1 · S0` | `I3` | `1` | `1` |
+| `1` | `100` | `S2 · S1' · S0'` | `I4` | `1` | `1` |
+| `1` | `101` | `S2 · S1' · S0` | `I5` | `0` | `0` |
+| **`1`** | **`110`** | **`S2 · S1 · S0'`** | **`I6`** | **`1`** | **`1`** |
+| `1` | `111` | `S2 · S1 · S0` | `I7` | `0` | `0` |
+| **`0`** | **`XXX`** | `0` | — | `X` | **`0`** |
+
+</div>
+
+<div style="background-color: #e6ffed; border-left: 5px solid #198754; padding: 12px; border-radius: 6px; margin-top: 12px;">
+  <strong style="color: #146c43;">✅ Respuesta:</strong> Con <code>E = 1</code> y <code>S<sub>2</sub>S<sub>1</sub>S<sub>0</sub> = 110</code>, se selecciona <code>I<sub>6</sub></code> y la salida es <strong><code>Y = 1</code></strong>; al pasar a <code>E = 0</code>, la salida es <strong><code>Y = 0</code></strong>.
+</div>
+
 
 <br>
 
@@ -109,8 +196,19 @@ Un MUX más grande se arma con MUX más chicos. Un MUX 8:1 son dos MUX de 4:1 qu
 
 ---
 
+
 ## 🔀 Demultiplexor (DEMUX)
+Un demultiplexor hace lo contrario del MUX: toma una sola entrada de datos (D) y la envía a una de varias salidas (la que indica la salida de selección), esta salida toma el valor lógico de la entrada y las demás quedan en 0. 
 
+---
 
+***Ejemplo*** <br>
+**DEMUX 1:4** <br>
+| S1 | S0 | Y0 | Y1 | Y2 | Y3 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 0 | 0 | D | 0 | 0 | 0 |
+| 0 | 1 | 0 | D | 0 | 0 |
+| 1 | 0 | 0 | 0 | D | 0 |
+| 1 | 1 | 0 | 0 | 0 | D |
 
-
+<br>
