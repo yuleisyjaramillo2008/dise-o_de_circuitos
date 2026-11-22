@@ -381,6 +381,11 @@ Y<sub>3</sub> = E · D · S<sub>2</sub>' · S<sub>1</sub> · S<sub>0</sub>      
 <br>
 
 <div align="center">
+  <img src="../Imagenes/DEMUX_8Salidas_Compuertas.png" alt="Circuito lógico de un Demultiplexor 1:8 con Enable" width="650">
+  <p><em>Figura 8: Simulación en Logisim del Demultiplexor 1:8 con entrada de habilitación (E).</em></p>
+</div>
+
+<div align="center">
 
 | `E` | `D` | `S2 S1 S0` | Canal activo | `Y0` | `Y1` | `Y2` | `Y3` | `Y4` | `Y5` | `Y6` | `Y7` |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
