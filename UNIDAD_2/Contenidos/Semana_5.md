@@ -409,4 +409,23 @@ Y<sub>3</sub> = E · D · S<sub>2</sub>' · S<sub>1</sub> · S<sub>0</sub>      
 
 ---
 
+<div align="center">
+  <sub>✦ • ✦ • ✦</sub>
+</div>
+
+---
+
+<br>
+
+## Decodificador y codificador
+---
+Dentro de la electrónica digital, los codificadores y decodificadores son circuitos que sirven para convertir información de un formato a otro y facilitar la comunicación entre distintos dispositivos. Aunque van de la mano, cumplen funciones opuestas: uno toma muchas señales individuales y las transforma en un código binario compacto, y el otro recibe ese código para encender una sola salida específica.
+
+---
+
+### DECODIFICADOR
+Su función es leer un código binario de **n** bits y activar una única salida entre un máximo de 2n salidas posibles, mientras que las demás están desactivadas. 
+
+
+
 
