@@ -97,7 +97,7 @@ Para seleccionar una entrada y bloquear las demás se usan las compuertas lógic
 Siguiendo el ejemplo de del MUX 4:1 se necesitara: <br>
 * 2 NOT (para S₀` y S₁`´).
 * 4 AND  de tres entradas.
-* 1 OR de 4 entradas.
+* 1 OR de 4 entradas. <br>
 ***🔢 Integrados de la familia 74LS*** <br>
 
 | Integrado | Qué contiene |
@@ -206,6 +206,11 @@ Un MUX más grande se arma con MUX más chicos. Un MUX 8:1 son dos MUX de 4:1 qu
 
 ## 🔀 Demultiplexor (DEMUX)
 
+<div align="center">
+  <img src="../Imagenes/DEMUX_REAL.jpg" alt="Circuito integrado Demultiplexor real" width="450">
+  <p><em>Figura 5: Demultiplexor real.</em></p>
+</div>
+
 <div style="background-color: #f0f7ff; border-left: 5px solid #0066cc; padding: 14px; border-radius: 6px; margin-bottom: 16px;">
   <strong style="color: #004c99; font-size: 1.05em;">📘 Definición:</strong><br>
   
@@ -300,6 +305,40 @@ Siguiendo el ejemplo del DEMUX 1:4 se necesitará:
 * 2 NOT (para S₁' y S₀').
 * 4 AND de tres entradas (una por cada salida).
 
-Total: **6 compuertas**.
+Total: **6 compuertas**. <br>
+
+***🔢 Integrados de la familia 74LS*** <br>
+| Integrado | Qué contiene |
+| :--- | :--- |
+| 74LS139 | 2 demultiplexores 1:4  |
+| 74LS155 | 2 demultiplexores 1:4 |
+| 74LS138 | 1 demultiplexor 1:8 |
+| 74LS154 | 1 demultiplexor 1:16 |
+
+<br>
+
+<div align="center">
+  <img src="../Imagenes/DEMUX_4Salidas.png" alt="Circuito lógico de un Demultiplexor de 4 salidas" width="600">
+  <p><em>Figura 6: Implementación de un Demultiplexor 1:4 con compuertas lógicas (NOT y AND).</em></p>
+</div>
+
+---
+
+### 🔧 Expansión
+
+Un DEMUX más grande se arma con DEMUX más chicos. Un **DEMUX 1:16** es un **DEMUX 1:2** controlado por **S3**, que decide cuál de los dos DEMUX 1:8 recibe el dato **D**, más dos **DEMUX 1:8** que comparten **S2, S1 y S0**.
+
+
+
+> **Nota sobre la figura:** en la imagen original las líneas de selección están rotuladas S1, S2, S3 y S1. En este cuaderno se leen así: **S3** controla el DEMUX 1x2, y **S2, S1 y S0** se comparten con los dos DEMUX 1:8. La entrada **I** de la figura es la entrada **D**.
+
+| S3 | S2 S1 S0 | DEMUX 1:8 que recibe D | Salida que toma el valor de D |
+| :---: | :---: | :---: | :---: |
+| 0 | 000 a 111 | Inferior | Y0 a Y7 |
+| 1 | 000 a 111 | Superior | Y8 a Y15 |
+
+El DEMUX 1:8 que **no** es elegido recibe 0, así que todas sus salidas quedan en 0.
+
+**Ejemplo:** con S3 S2 S1 S0 = 1010 (que es 10 en decimal), el dato sale por **Y10**.
 
 
