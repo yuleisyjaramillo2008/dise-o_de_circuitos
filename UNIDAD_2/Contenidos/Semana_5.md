@@ -520,7 +520,7 @@ En este circuito, al ingresar el código binario `10` (`A1 = 1, A0 = 0`), única
 Para formar un decodificador más grande se conectan varios decodificadores pequeños usando sus pines de habilitación (**Enable**). Por ejemplo, un **Decodificador 3:8** se arma con **dos decodificadores 2:4** que comparten `A1` y `A0`, mientras el bit más significativo (`A2`) habilita el primer bloque cuando vale `0` (salidas `Y0`–`Y3`) y el segundo bloque cuando vale `1` (salidas `Y4`–`Y7`).
 
 <div align="center">
-  <img src="../Imagenes/Expansion_Decodificador_3a8.png" alt="Expansión de Decodificador 2:4 a 3:8" width="550">
+  <img src="../Imagenes/Expansion_Decodificador_3a8.jpg" alt="Expansión de Decodificador 2:4 a 3:8" width="550">
   <p><em>Figura 11: Expansión de dos Decodificadores 2:4 para formar un Decodificador 3:8.</em></p>
 </div>
 
