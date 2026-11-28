@@ -417,15 +417,186 @@ Y<sub>3</sub> = E · D · S<sub>2</sub>' · S<sub>1</sub> · S<sub>0</sub>      
 
 <br>
 
-## Decodificador y codificador
----
-Dentro de la electrónica digital, los codificadores y decodificadores son circuitos que sirven para convertir información de un formato a otro y facilitar la comunicación entre distintos dispositivos. Aunque van de la mano, cumplen funciones opuestas: uno toma muchas señales individuales y las transforma en un código binario compacto, y el otro recibe ese código para encender una sola salida específica.
+## 🔓 Decodificador (Decoder)
+
+<div align="center">
+  <img src="../Imagenes/decodificador_real.jpg" alt="Circuito integrado Decodificador real" width="450">
+  <p><em>Figura 9: Decodificador real (familia 74LS).</em></p>
+</div>
+
+<div style="background-color: #f0f7ff; border-left: 5px solid #0066cc; padding: 14px; border-radius: 6px; margin-bottom: 16px;">
+  <strong style="color: #004c99; font-size: 1.05em;">📘 Definición:</strong><br>
+  Un decodificador es un circuito combinacional que funciona como un traductor de binario a señales individuales: recibe un <strong>código binario corto de <em>n</em> bits</strong> en sus entradas y activa <strong>una única línea específica</strong> entre <strong>2<sup>n</sup> salidas posibles</strong>, manteniendo todas las demás apagadas. A diferencia del DEMUX, no tiene un cable de datos que repartir; su único trabajo es leer la combinación binaria y encender el canal exacto que le corresponde.
+</div>
 
 ---
 
-### DECODIFICADOR
-Su función es leer un código binario de **n** bits y activar una única salida entre un máximo de 2n salidas posibles, mientras que las demás están desactivadas. 
+### 🧩 Partes de un Decodificador
 
+| 🏷️ Parte | 📖 Explicación | 💡 Ejemplo explicativo |
+| :--- | :--- | :--- |
+| <span style="color: #6f42c1;"><strong>🎛️ n entradas de código</strong></span> | Son los pines por donde entra el número binario que indica qué salida encender | <code>n = 3</code> líneas de entrada (<code>A<sub>2</sub></code>, <code>A<sub>1</sub></code>, <code>A<sub>0</sub></code>) |
+| <span style="color: #198754;"><strong>📤 2<sup>n</sup> salidas individuales</strong></span> | Cada combinación binaria en la entrada enciende una única salida distinta | <code>2<sup>3</sup> = 8</code> salidas (<code>Y<sub>0</sub></code> a <code>Y<sub>7</sub></code>) |
+| <span style="color: #d97706;"><strong>🔌 OPCIONAL:</strong></span> <strong>Habilitación (Enable)</strong> | Pin maestro que enciende o apaga todo el circuito. *(Si se usa como entrada de datos, el decodificador funciona igual que un DEMUX)* | <ul><li><span style="color: #198754;"><strong>Si E=1</strong></span> decodifica normalmente el código de entrada.</li><li><span style="color: #dc3545;"><strong>Si E=0</strong></span> todas las salidas permanecen apagadas sin importar el código.</li></ul> |
+
+---
+
+***EJEMPLOS:***
+<br>
+**Decodificador 2:4 (2 a 4):** Tiene 2 entradas binarias ($n = 2$), por lo tanto activa 1 de $2^2 = 4$ salidas posibles.<br>
+
+| A1 | A0 | Y0 | Y1 | Y2 | Y3 |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| 0 | 0 | **1** | 0 | 0 | 0 |
+| 0 | 1 | 0 | **1** | 0 | 0 |
+| 1 | 0 | 0 | 0 | **1** | 0 |
+| 1 | 1 | 0 | 0 | 0 | **1** |
+
+<br>
+
+<div align="center">
+<pre><code>Y<sub>0</sub> = A<sub>1</sub>' · A<sub>0</sub>'       Y<sub>1</sub> = A<sub>1</sub>' · A<sub>0</sub>       Y<sub>2</sub> = A<sub>1</sub> · A<sub>0</sub>'       Y<sub>3</sub> = A<sub>1</sub> · A<sub>0</sub></code></pre>
+</div>
+
+---
+
+### 🧮 Ecuaciones Booleanas y Lógica Interna
+
+Para que cada salida reconozca únicamente su número binario correspondiente, se usan **compuertas NOT** (para invertir los ceros) y **compuertas AND** (una por cada salida).
+
+<div style="background-color: #f8f9fa; border-left: 5px solid #6f42c1; padding: 14px; border-radius: 6px; margin-bottom: 16px;">
+  <strong style="color: #4c2889;">⚙️ ¿Cómo funciona la decodificación?</strong>
+  <ul>
+    <li><strong>Un minitérmino por salida:</strong> Cada salida tiene su propia compuerta AND conectada a una combinación única de entradas directas y negadas.</li>
+    <li><strong>Exclusividad:</strong> Como solo una combinación binaria puede existir en las entradas al mismo tiempo, únicamente una compuerta AND cumple con tener todas sus entradas en <code>1</code>.</li>
+    <li><strong>Salidas activas en bajo (Active-Low):</strong> En los chips comerciales 74LS se usan compuertas <strong>NAND</strong> en lugar de AND; por eso, la salida seleccionada marca <code>0</code> mientras las demás se quedan en <code>1</code>.</li>
+  </ul>
+</div>
+
+#### 📊 Tipos especiales: Decodificador BCD a 7 Segmentos
+
+Además de encender una sola línea, existen decodificadores diseñados para pantallas numéricas. Reciben un **código BCD** de 4 bits (dígitos del `0` al `9`) y encienden **varios segmentos a la vez** (`a, b, c, d, e, f, g`) para dibujar el número en un display.
+
+<div align="center">
+
+| Dígito Decimal | Código BCD (`D C B A`) | Segmentos encendidos | Visualización |
+| :---: | :---: | :---: | :--- |
+| **`0`** | `0000` | `a, b, c, d, e, f` | Forma el número **0** |
+| **`1`** | `0001` | `b, c` | Forma el número **1** |
+| **`5`** | `0101` | `a, f, g, c, d` | Forma el número **5** |
+| **`8`** | `1000` | `a, b, c, d, e, f, g` | Forma el número **8** |
+
+</div>
+
+---
+
+### Formación de los circuitos
+Siguiendo el ejemplo del Decodificador 2:4 (sin Enable) se necesitará:<br>
+- 2 NOT (para `A0'` y `A1'`).
+- 4 AND de 2 entradas (una para cada salida `Y0` a `Y3`). *(Nota: Aquí no se usa compuerta OR porque cada salida es independiente).*<br>
+
+***🔢 Integrados de la familia 74LS***<br>
+
+| Integrado | Qué contiene | Tipo de salida |
+| :--- | :--- | :--- |
+| **74LS139** | 2 decodificadores 2:4 independientes | Activa en bajo (`0`) |
+| **74LS138** | 1 decodificador 3:8 (con 3 pines Enable) | Activa en bajo (`0`) |
+| **74LS154** | 1 decodificador 4:16 | Activa en bajo (`0`) |
+| **74LS47** | Decodificador BCD a 7 segmentos (Ánodo común) | Activa en bajo (`0`) |
+| **74LS48** | Decodificador BCD a 7 segmentos (Cátodo común) | Activa en alto (`1`) |
+
+<br>
+
+<div align="center">
+  <img src="../Imagenes/Decodificador_2a4.png" alt="Circuito lógico de un Decodificador 2 a 4" width="600">
+  <p><em>Figura 10: Implementación de un Decodificador 2:4 con compuertas lógicas (NOT y AND).</em></p>
+</div>
+
+En este circuito, al ingresar el código binario `10` (`A1 = 1, A0 = 0`), únicamente se cumple la condición de la tercera compuerta AND y se enciende la salida `Y2 = 1`.<br>
+
+---
+
+### Expansión
+Para formar un decodificador más grande se conectan varios decodificadores pequeños usando sus pines de habilitación (**Enable**). Por ejemplo, un **Decodificador 3:8** se arma con **dos decodificadores 2:4** que comparten `A1` y `A0`, mientras el bit más significativo (`A2`) habilita el primer bloque cuando vale `0` (salidas `Y0`–`Y3`) y el segundo bloque cuando vale `1` (salidas `Y4`–`Y7`).
+
+<div align="center">
+  <img src="../Imagenes/Expansion_Decodificador_3a8.png" alt="Expansión de Decodificador 2:4 a 3:8" width="550">
+  <p><em>Figura 11: Expansión de dos Decodificadores 2:4 para formar un Decodificador 3:8.</em></p>
+</div>
+
+<br>
+
+<div align="center" style="background-color: #f6f8fa; border: 2px solid #0969da; border-radius: 10px; padding: 12px 20px; margin: 20px 0;">
+  <h3 style="margin: 0; color: #0969da;">⚡ EJERCICIOS ⚡</h3>
+  <sub>Práctica de Decodificadores (Decoder)</sub>
+</div>
+
+<br>
+
+<div style="background-color: #fff8c5; border-left: 5px solid #d4a72c; padding: 14px; border-radius: 6px; margin-bottom: 16px;">
+  <strong style="color: #7d4e00; font-size: 1.05em;">📋 Enunciado:</strong><br>
+  Un sistema de almacenamiento automatizado cuenta con <strong>8 compartimentos de seguridad</strong> (<code>Y<sub>0</sub></code> a <code>Y<sub>7</sub></code>) y necesita abrir exactamente uno a la vez según el código de 3 bits enviado desde un panel de control (<code>A<sub>2</sub>A<sub>1</sub>A<sub>0</sub></code>), contando además con una llave maestra de encendido (<code>E</code>). <strong>¿Qué arquitectura de decodificador (dimensionamiento, ecuaciones, compuertas, integrado comercial y expansión) se requiere, y qué compartimento se abrirá cuando se envíe <code>A<sub>2</sub>A<sub>1</sub>A<sub>0</sub> = 100</code> con <code>E = 1</code> y luego al girar la llave a <code>E = 0</code>?</strong>
+</div>
+
+<div align="center">
+
+| Parámetro | Valor / Dato |
+| :--- | :--- |
+| **Tipo de circuito** | Decodificador 3:8 con Enable (activo en alto) |
+| **Entradas de código (<em>n</em>)** | <code>n = 3</code> (<code>A<sub>2</sub></code>, <code>A<sub>1</sub></code>, <code>A<sub>0</sub></code>) |
+| **Salidas individuales (2<sup>n</sup>)** | <code>2<sup>3</sup> = 8</code> (<code>Y<sub>0</sub></code> a <code>Y<sub>7</sub></code>) |
+| **Habilitación** | <code>E</code> (1 bit maestro) |
+| **Compuertas discretas** | 3 NOT + 8 AND (4 ent.: `E`, `A2`, `A1`, `A0`) = **11 compuertas** |
+| **Integrado 74LS** | **74LS138** (1 decodificador 3:8, salidas activas en bajo) |
+| **Expansión** | 2 decodificadores 2:4 (**74LS139**) compartiendo <code>A<sub>1</sub>, A<sub>0</sub></code> + 1 NOT en <code>A<sub>2</sub></code> |
+
+</div>
+
+<br>
+
+<div align="center">
+<pre><code>Y<sub>0</sub> = E · A<sub>2</sub>' · A<sub>1</sub>' · A<sub>0</sub>'       Y<sub>4</sub> = E · A<sub>2</sub> · A<sub>1</sub>' · A<sub>0</sub>'
+Y<sub>1</sub> = E · A<sub>2</sub>' · A<sub>1</sub>' · A<sub>0</sub>        Y<sub>5</sub> = E · A<sub>2</sub> · A<sub>1</sub>' · A<sub>0</sub>
+Y<sub>2</sub> = E · A<sub>2</sub>' · A<sub>1</sub> · A<sub>0</sub>'        Y<sub>6</sub> = E · A<sub>2</sub> · A<sub>1</sub> · A<sub>0</sub>'
+Y<sub>3</sub> = E · A<sub>2</sub>' · A<sub>1</sub> · A<sub>0</sub>         Y<sub>7</sub> = E · A<sub>2</sub> · A<sub>1</sub> · A<sub>0</sub></code></pre>
+</div>
+
+<br>
+
+<div align="center">
+  <img src="../Imagenes/Decodificador_3a8_Circuito.png" alt="Circuito lógico de un Decodificador 3:8 con Enable" width="650">
+  <p><em>Figura 12: Simulación en Logisim del Decodificador 3:8 con entrada de habilitación (E).</em></p>
+</div>
+
+<div align="center">
+
+| `E` | `A2 A1 A0` | Minitérmino activo (`= 1`) | `Y0` | `Y1` | `Y2` | `Y3` | `Y4` | `Y5` | `Y6` | `Y7` | Salida activa |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| `1` | `000` | `A2' · A1' · A0'` | `1` | `0` | `0` | `0` | `0` | `0` | `0` | `0` | `Y0` |
+| `1` | `001` | `A2' · A1' · A0` | `0` | `1` | `0` | `0` | `0` | `0` | `0` | `0` | `Y1` |
+| `1` | `010` | `A2' · A1 · A0'` | `0` | `0` | `1` | `0` | `0` | `0` | `0` | `0` | `Y2` |
+| `1` | `011` | `A2' · A1 · A0` | `0` | `0` | `0` | `1` | `0` | `0` | `0` | `0` | `Y3` |
+| **`1`** | **`100`** | **`A2 · A1' · A0'`** | **`0`** | **`0`** | **`0`** | **`0`** | **`1`** | **`0`** | **`0`** | **`0`** | **`Y4`** |
+| `1` | `101` | `A2 · A1' · A0` | `0` | `0` | `0` | `0` | `0` | `1` | `0` | `0` | `Y5` |
+| `1` | `110` | `A2 · A1 · A0'` | `0` | `0` | `0` | `0` | `0` | `0` | `1` | `0` | `Y6` |
+| `1` | `111` | `A2 · A1 · A0` | `0` | `0` | `0` | `0` | `0` | `0` | `0` | `1` | `Y7` |
+| **`0`** | **`XXX`** | `0` | **`0`** | **`0`** | **`0`** | **`0`** | **`0`** | **`0`** | **`0`** | **`0`** | *Ninguna* |
+
+</div>
+
+<div style="background-color: #e6ffed; border-left: 5px solid #198754; padding: 12px; border-radius: 6px; margin-top: 12px;">
+  <strong style="color: #146c43;">✅ Respuesta:</strong> Con <code>E = 1</code> y <code>A<sub>2</sub>A<sub>1</sub>A<sub>0</sub> = 100</code>, se activa únicamente el compartimento <strong><code>Y<sub>4</sub> = 1</code></strong> mientras los demás quedan en <code>0</code>; al girar la llave a <code>E = 0</code>, <strong>todas las salidas pasan a <code>0</code></strong> y ningún compartimento se abre.
+</div>
+
+<br>
+
+---
+
+<div align="center">
+  <sub>✦ • ✦ • ✦</sub>
+</div>
+
+---
 
 
 
