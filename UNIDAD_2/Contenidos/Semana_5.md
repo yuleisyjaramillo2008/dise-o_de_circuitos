@@ -598,5 +598,351 @@ Y<sub>3</sub> = E · A<sub>2</sub>' · A<sub>1</sub> · A<sub>0</sub>         Y<
 
 ---
 
+## 🔐 Codificador (Encoder)
+
+<div align="center">
+  <img src="../Imagenes/codificador_real.jpg" alt="Circuito integrado Codificador real" width="450">
+  <p><em>Figura 13: Codificador real (familia 74LS).</em></p>
+</div>
+
+<div style="background-color: #f0f7ff; border-left: 5px solid #0066cc; padding: 14px; border-radius: 6px; margin-bottom: 16px;">
+  <strong style="color: #004c99; font-size: 1.05em;">📘 Definición:</strong><br>
+  Un codificador es un circuito combinacional que hace exactamente el trabajo inverso al decodificador: recibe <strong>varias señales individuales de entrada (2<sup>n</sup>)</strong> donde solo una se activa a la vez, y las resume en un <strong>código binario compacto de <em>n</em> bits</strong> en sus salidas. Su función principal es ahorrar líneas de conexión convirtiendo pulsaciones o señales independientes (como las teclas de un teclado) en unos y ceros que otro circuito pueda procesar.
+</div>
+
+---
+
+### 🧩 Partes de un Codificador
+
+| 🏷️ Parte | 📖 Explicación | 💡 Ejemplo explicativo |
+| :--- | :--- | :--- |
+| <span style="color: #0066cc;"><strong>📥 2<sup>n</sup> entradas individuales</strong></span> | Líneas independientes que representan cada opción o tecla disponible | <code>2<sup>3</sup> = 8</code> entradas (<code>I<sub>0</sub></code> a <code>I<sub>7</sub></code>) |
+| <span style="color: #198754;"><strong>📤 n salidas de código</strong></span> | Pines que entregan el número binario correspondiente a la entrada activa | <code>n = 3</code> bits de salida (<code>Y<sub>2</sub></code>, <code>Y<sub>1</sub></code>, <code>Y<sub>0</sub></code>) |
+| <span style="color: #6f42c1;"><strong>👑 Prioridad (Priority Encoder)</strong></span> | Función integrada en chips comerciales que decide cuál salida generar si se activan dos entradas al mismo tiempo (atiende siempre a la de mayor número) | Si se presionan <code>I<sub>2</sub></code> e <code>I<sub>5</sub></code> juntas, entrega el binario de <code>5</code> (<code>101</code>) |
+
+---
+
+***EJEMPLOS:***
+<br>
+**Codificador 4:2 (4 a 2):** Tiene $2^2 = 4$ entradas individuales (`I0` a `I3`), por lo tanto entrega un código binario de $n = 2$ bits (`Y1, Y0`).<br>
+
+| `I3` | `I2` | `I1` | `I0` | `Y1` | `Y0` | Código generado |
+| :---: | :---: | :---: | :---: | :---: | :---: | :--- |
+| `0` | `0` | `0` | **`1`** | `0` | `0` | `00` (Entrada `I0`) |
+| `0` | `0` | **`1`** | `0` | `0` | `1` | `01` (Entrada `I1`) |
+| `0` | **`1`** | `0` | `0` | `1` | `0` | `10` (Entrada `I2`) |
+| **`1`** | `0` | `0` | `0` | `1` | `1` | `11` (Entrada `I3`) |
+
+<br>
+
+<div align="center">
+<pre><code>Y<sub>1</sub> = I<sub>2</sub> + I<sub>3</sub>           Y<sub>0</sub> = I<sub>1</sub> + I<sub>3</sub></code></pre>
+</div>
+
+---
+
+### 🧮 Ecuaciones Booleanas y Lógica Interna
+
+A diferencia del decodificador (que usa compuertas NOT y AND), un codificador básico se construye únicamente con **compuertas OR**. Cada bit de salida se enciende cuando se activa cualquiera de las entradas que llevan un `1` en esa posición binaria.
+
+<div style="background-color: #f8f9fa; border-left: 5px solid #6f42c1; padding: 14px; border-radius: 6px; margin-bottom: 16px;">
+  <strong style="color: #4c2889;">⚙️ ¿Cómo se obtienen las ecuaciones?</strong>
+  <ul>
+    <li><strong>Bit Y<sub>0</sub> (peso 1):</strong> Debe valer <code>1</code> para los números impares (<code>I<sub>1</sub> = 01</code> e <code>I<sub>3</sub> = 11</code>), por eso se suman con una OR: <code>Y<sub>0</sub> = I<sub>1</sub> + I<sub>3</sub></code>.</li>
+    <li><strong>Bit Y<sub>1</sub> (peso 2):</strong> Debe valer <code>1</code> para los números mayores o iguales a 2 (<code>I<sub>2</sub> = 10</code> e <code>I<sub>3</sub> = 11</code>), por eso: <code>Y<sub>1</sub> = I<sub>2</sub> + I<sub>3</sub></code>.</li>
+    <li><strong>Entrada I<sub>0</sub> sin conexión:</strong> Cuando solo <code>I<sub>0</sub></code> está en <code>1</code>, ambas compuertas OR reciben <code>0</code> y la salida marca automáticamente <code>00</code>.</li>
+  </ul>
+</div>
+
+#### 📊 Tipos especiales: Codificador de Prioridad y BCD
+
+En la práctica pueden ocurrir dos pulsaciones accidentales al mismo tiempo. Para evitar errores, los integrados reales incorporan **lógica de prioridad** (gana la entrada de mayor índice) y salidas de validación (`GS` o `EO`).
+
+<div align="center">
+
+| Tipo de Codificador | Entradas $\rightarrow$ Salidas | Uso principal |
+| :--- | :---: | :--- |
+| **Binario estándar (8:3)** | `8` líneas $\rightarrow$ `3` bits | Conversión directa de 8 canales a binario natural (`000`–`111`) |
+| **Decimal a BCD (10:4)** | `10` teclas (`0`–`9`) $\rightarrow$ `4` bits | Teclados numéricos que entregan código BCD `8421` (`0000`–`1001`) |
+
+</div>
+
+---
+
+### Formación de los circuitos
+Siguiendo el ejemplo del Codificador 4:2 básico se necesitará:<br>
+- 0 NOT y 0 AND.
+- 2 compuertas OR de 2 entradas (una para `Y1` y otra para `Y0`).<br>
+
+***🔢 Integrados de la familia 74LS***<br>
+
+| Integrado | Qué contiene | Característica |
+| :--- | :--- | :--- |
+| **74LS148** | Codificador de prioridad **8:3** (octal a binario) | Entradas y salidas activas en bajo (`0`), permite expansión |
+| **74LS147** | Codificador de prioridad **10:4** (decimal a BCD) | Convierte 9 líneas activas (`1`–`9`) a BCD invertido (`0000` es reposo) |
+
+<br>
+
+<div align="center">
+  <img src="../Imagenes/Codificador_4a2.png" alt="Circuito lógico de un Codificador 4 a 2" width="600">
+  <p><em>Figura 14: Implementación de un Codificador 4:2 con compuertas lógicas (OR).</em></p>
+</div>
+
+En este circuito, al activar únicamente la entrada `I2 = 1` (tercera línea), la compuerta superior (`Y1`) recibe un `1` mientras la inferior (`Y0`) recibe `0`, generando en la salida el código binario `10` (2 en decimal).<br>
+
+---
+
+### Expansión
+Para ampliar un codificador (por ejemplo, unir **dos codificadores de prioridad 8:3** como el **74LS148** para formar un **Codificador 16:4**), se conecta la salida de habilitación (`EO`) del chip de mayor prioridad hacia la entrada de habilitación (`EI`) del chip de menor prioridad. De esta forma, si se activa cualquier entrada en el bloque superior (`I8`–`I15`), este bloquea automáticamente al bloque inferior (`I0`–`I7`) y activa el cuarto bit de salida (`Y3 = 1`).
+
+<div align="center">
+  <img src="../Imagenes/Expansion_Codificador_16a4.png" alt="Expansión de dos Codificadores 8:3 a 16:4" width="550">
+  <p><em>Figura 15: Expansión en cascada de dos Codificadores de prioridad 8:3 para formar un Codificador 16:4.</em></p>
+</div>
+
+<br>
+
+<div align="center" style="background-color: #f6f8fa; border: 2px solid #0969da; border-radius: 10px; padding: 12px 20px; margin: 20px 0;">
+  <h3 style="margin: 0; color: #0969da;">⚡ EJERCICIOS ⚡</h3>
+  <sub>Práctica de Codificadores (Encoder)</sub>
+</div>
+
+<br>
+
+<div style="background-color: #fff8c5; border-left: 5px solid #d4a72c; padding: 14px; border-radius: 6px; margin-bottom: 16px;">
+  <strong style="color: #7d4e00; font-size: 1.05em;">📋 Enunciado:</strong><br>
+  Una central de alarmas industriales supervisa <strong>8 zonas independientes</strong> (<code>I<sub>0</sub></code> a <code>I<sub>7</sub></code>) y debe enviar hacia una pantalla central un código binario de 3 bits (<code>Y<sub>2</sub>Y<sub>1</sub>Y<sub>0</sub></code>) que identifique qué zona activó su sensor. <strong>¿Qué arquitectura de codificador (dimensionamiento, ecuaciones booleanas, compuertas e integrado comercial) se necesita, y cuál será el código binario entregado en <code>Y<sub>2</sub>Y<sub>1</sub>Y<sub>0</sub></code> si se dispara únicamente el sensor de la zona <code>I<sub>5</sub> = 1</code>?</strong>
+</div>
+
+<div align="center">
+
+| Parámetro | Valor / Dato |
+| :--- | :--- |
+| **Tipo de circuito** | Codificador binario 8:3 |
+| **Entradas individuales (2<sup>n</sup>)** | <code>2<sup>3</sup> = 8</code> zonas (<code>I<sub>0</sub></code> a <code>I<sub>7</sub></code>) |
+| **Salidas de código (<em>n</em>)** | <code>n = 3</code> bits (<code>Y<sub>2</sub></code>, <code>Y<sub>1</sub></code>, <code>Y<sub>0</sub></code>) |
+| **Compuertas discretas** | **3 compuertas OR** de 4 entradas cada una (una por cada bit de salida) |
+| **Integrado 74LS** | **74LS148** (codificador de prioridad 8:3, entradas/salidas activas en bajo) |
+| **Expansión** | Conexión en cascada (<code>EO</code> $\rightarrow$ <code>EI</code>) de dos **74LS148** para 16 zonas (<code>16:4</code>) |
+
+</div>
+
+<br>
+
+<div align="center">
+<pre><code>Y<sub>2</sub> = I<sub>4</sub> + I<sub>5</sub> + I<sub>6</sub> + I<sub>7</sub>
+Y<sub>1</sub> = I<sub>2</sub> + I<sub>3</sub> + I<sub>6</sub> + I<sub>7</sub>
+Y<sub>0</sub> = I<sub>1</sub> + I<sub>3</sub> + I<sub>5</sub> + I<sub>7</sub></code></pre>
+</div>
+
+<br>
+
+<div align="center">
+  <img src="../Imagenes/Codificador_8a3_Circuito.png" alt="Circuito lógico de un Codificador 8 a 3" width="650">
+  <p><em>Figura 16: Simulación en Logisim del Codificador 8:3 con compuertas OR.</em></p>
+</div>
+
+<div align="center">
+
+| Entrada activa (`= 1`) | `I7` | `I6` | `I5` | `I4` | `I3` | `I2` | `I1` | `I0` | `Y2` | `Y1` | `Y0` | Código binario |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| `I0` | `0` | `0` | `0` | `0` | `0` | `0` | `0` | `1` | `0` | `0` | `0` | `000` |
+| `I1` | `0` | `0` | `0` | `0` | `0` | `0` | `1` | `0` | `0` | `0` | `1` | `001` |
+| `I2` | `0` | `0` | `0` | `0` | `0` | `1` | `0` | `0` | `0` | `1` | `0` | `010` |
+| `I3` | `0` | `0` | `0` | `0` | `1` | `0` | `0` | `0` | `0` | `1` | `1` | `011` |
+| `I4` | `0` | `0` | `0` | `1` | `0` | `0` | `0` | `0` | `1` | `0` | `0` | `100` |
+| **`I5`** | **`0`** | **`0`** | **`1`** | **`0`** | **`0`** | **`0`** | **`0`** | **`0`** | **`1`** | **`0`** | **`1`** | **`101`** |
+| `I6` | `0` | `1` | `0` | `0` | `0` | `0` | `0` | `0` | `1` | `1` | `0` | `110` |
+| `I7` | `1` | `0` | `0` | `0` | `0` | `0` | `0` | `0` | `1` | `1` | `1` | `111` |
+
+</div>
+
+<div style="background-color: #e6ffed; border-left: 5px solid #198754; padding: 12px; border-radius: 6px; margin-top: 12px;">
+  <strong style="color: #146c43;">✅ Respuesta:</strong> Al activarse únicamente el sensor de la zona <strong><code>I<sub>5</sub> = 1</code></strong>, se encienden las salidas <code>Y<sub>2</sub> = 1</code> y <code>Y<sub>0</sub> = 1</code> mientras <code>Y<sub>1</sub> = 0</code>, entregando en la salida el código binario <strong><code>101</code></strong> (5 en decimal).
+</div>
+
+<br>
+
+---
+
+<div align="center">
+  <sub>✦ • ✦ • ✦</sub>
+</div>
+
+---
+
+## 🔐 Codificador (Encoder)
+
+<div align="center">
+  <img src="../Imagenes/codificador_real.jpg" alt="Circuito integrado Codificador real" width="450">
+  <p><em>Figura 13: Codificador real (familia 74LS).</em></p>
+</div>
+
+<div style="background-color: #f0f7ff; border-left: 5px solid #0066cc; padding: 14px; border-radius: 6px; margin-bottom: 16px;">
+  <strong style="color: #004c99; font-size: 1.05em;">📘 Definición:</strong><br>
+  Un codificador es un circuito combinacional que hace exactamente el trabajo inverso al decodificador: recibe <strong>varias señales individuales de entrada (2<sup>n</sup>)</strong> donde solo una se activa a la vez, y las resume en un <strong>código binario compacto de <em>n</em> bits</strong> en sus salidas. Su función principal es ahorrar líneas de conexión convirtiendo pulsaciones o señales independientes (como las teclas de un teclado) en unos y ceros que otro circuito pueda procesar.
+</div>
+
+---
+
+### 🧩 Partes de un Codificador
+
+| 🏷️ Parte | 📖 Explicación | 💡 Ejemplo explicativo |
+| :--- | :--- | :--- |
+| <span style="color: #0066cc;"><strong>📥 2<sup>n</sup> entradas individuales</strong></span> | Líneas independientes que representan cada opción o tecla disponible | <code>2<sup>3</sup> = 8</code> entradas (<code>I<sub>0</sub></code> a <code>I<sub>7</sub></code>) |
+| <span style="color: #198754;"><strong>📤 n salidas de código</strong></span> | Pines que entregan el número binario correspondiente a la entrada activa | <code>n = 3</code> bits de salida (<code>Y<sub>2</sub></code>, <code>Y<sub>1</sub></code>, <code>Y<sub>0</sub></code>) |
+| <span style="color: #6f42c1;"><strong>👑 Prioridad (Priority Encoder)</strong></span> | Función integrada en chips comerciales que decide cuál salida generar si se activan dos entradas al mismo tiempo (atiende siempre a la de mayor número) | Si se presionan <code>I<sub>2</sub></code> e <code>I<sub>5</sub></code> juntas, entrega el binario de <code>5</code> (<code>101</code>) |
+
+---
+
+***EJEMPLOS:***
+<br>
+**Codificador 4:2 (4 a 2):** Tiene $2^2 = 4$ entradas individuales (`I0` a `I3`), por lo tanto entrega un código binario de $n = 2$ bits (`Y1, Y0`).<br>
+
+| `I3` | `I2` | `I1` | `I0` | `Y1` | `Y0` | Código generado |
+| :---: | :---: | :---: | :---: | :---: | :---: | :--- |
+| `0` | `0` | `0` | **`1`** | `0` | `0` | `00` (Entrada `I0`) |
+| `0` | `0` | **`1`** | `0` | `0` | `1` | `01` (Entrada `I1`) |
+| `0` | **`1`** | `0` | `0` | `1` | `0` | `10` (Entrada `I2`) |
+| **`1`** | `0` | `0` | `0` | `1` | `1` | `11` (Entrada `I3`) |
+
+<br>
+
+<div align="center">
+<pre><code>Y<sub>1</sub> = I<sub>2</sub> + I<sub>3</sub>           Y<sub>0</sub> = I<sub>1</sub> + I<sub>3</sub></code></pre>
+</div>
+
+---
+
+### 🧮 Ecuaciones Booleanas y Lógica Interna
+
+A diferencia del decodificador (que usa compuertas NOT y AND), un codificador básico se construye únicamente con **compuertas OR**. Cada bit de salida se enciende cuando se activa cualquiera de las entradas que llevan un `1` en esa posición binaria.
+
+<div style="background-color: #f8f9fa; border-left: 5px solid #6f42c1; padding: 14px; border-radius: 6px; margin-bottom: 16px;">
+  <strong style="color: #4c2889;">⚙️ ¿Cómo se obtienen las ecuaciones?</strong>
+  <ul>
+    <li><strong>Bit Y<sub>0</sub> (peso 1):</strong> Debe valer <code>1</code> para los números impares (<code>I<sub>1</sub> = 01</code> e <code>I<sub>3</sub> = 11</code>), por eso se suman con una OR: <code>Y<sub>0</sub> = I<sub>1</sub> + I<sub>3</sub></code>.</li>
+    <li><strong>Bit Y<sub>1</sub> (peso 2):</strong> Debe valer <code>1</code> para los números mayores o iguales a 2 (<code>I<sub>2</sub> = 10</code> e <code>I<sub>3</sub> = 11</code>), por eso: <code>Y<sub>1</sub> = I<sub>2</sub> + I<sub>3</sub></code>.</li>
+    <li><strong>Entrada I<sub>0</sub> sin conexión:</strong> Cuando solo <code>I<sub>0</sub></code> está en <code>1</code>, ambas compuertas OR reciben <code>0</code> y la salida marca automáticamente <code>00</code>.</li>
+  </ul>
+</div>
+
+#### 📊 Tipos especiales: Codificador de Prioridad y BCD
+
+En la práctica pueden ocurrir dos pulsaciones accidentales al mismo tiempo. Para evitar errores, los integrados reales incorporan **lógica de prioridad** (gana la entrada de mayor índice) y salidas de validación (`GS` o `EO`).
+
+<div align="center">
+
+| Tipo de Codificador | Entradas $\rightarrow$ Salidas | Uso principal |
+| :--- | :---: | :--- |
+| **Binario estándar (8:3)** | `8` líneas $\rightarrow$ `3` bits | Conversión directa de 8 canales a binario natural (`000`–`111`) |
+| **Decimal a BCD (10:4)** | `10` teclas (`0`–`9`) $\rightarrow$ `4` bits | Teclados numéricos que entregan código BCD `8421` (`0000`–`1001`) |
+
+</div>
+
+---
+
+### Formación de los circuitos
+Siguiendo el ejemplo del Codificador 4:2 básico se necesitará:<br>
+- 0 NOT y 0 AND.
+- 2 compuertas OR de 2 entradas (una para `Y1` y otra para `Y0`).<br>
+
+***🔢 Integrados de la familia 74LS***<br>
+
+| Integrado | Qué contiene | Característica |
+| :--- | :--- | :--- |
+| **74LS148** | Codificador de prioridad **8:3** (octal a binario) | Entradas y salidas activas en bajo (`0`), permite expansión |
+| **74LS147** | Codificador de prioridad **10:4** (decimal a BCD) | Convierte 9 líneas activas (`1`–`9`) a BCD invertido (`0000` es reposo) |
+
+<br>
+
+<div align="center">
+  <img src="../Imagenes/Codificador_4a2.png" alt="Circuito lógico de un Codificador 4 a 2" width="600">
+  <p><em>Figura 14: Implementación de un Codificador 4:2 con compuertas lógicas (OR).</em></p>
+</div>
+
+En este circuito, al activar únicamente la entrada `I2 = 1` (tercera línea), la compuerta superior (`Y1`) recibe un `1` mientras la inferior (`Y0`) recibe `0`, generando en la salida el código binario `10` (2 en decimal).<br>
+
+---
+
+### Expansión
+Para ampliar un codificador (por ejemplo, unir **dos codificadores de prioridad 8:3** como el **74LS148** para formar un **Codificador 16:4**), se conecta la salida de habilitación (`EO`) del chip de mayor prioridad hacia la entrada de habilitación (`EI`) del chip de menor prioridad. De esta forma, si se activa cualquier entrada en el bloque superior (`I8`–`I15`), este bloquea automáticamente al bloque inferior (`I0`–`I7`) y activa el cuarto bit de salida (`Y3 = 1`).
+
+<div align="center">
+  <img src="../Imagenes/Expansion_Codificador_16a4.png" alt="Expansión de dos Codificadores 8:3 a 16:4" width="550">
+  <p><em>Figura 15: Expansión en cascada de dos Codificadores de prioridad 8:3 para formar un Codificador 16:4.</em></p>
+</div>
+
+<br>
+
+<div align="center" style="background-color: #f6f8fa; border: 2px solid #0969da; border-radius: 10px; padding: 12px 20px; margin: 20px 0;">
+  <h3 style="margin: 0; color: #0969da;">⚡ EJERCICIOS ⚡</h3>
+  <sub>Práctica de Codificadores (Encoder)</sub>
+</div>
+
+<br>
+
+<div style="background-color: #fff8c5; border-left: 5px solid #d4a72c; padding: 14px; border-radius: 6px; margin-bottom: 16px;">
+  <strong style="color: #7d4e00; font-size: 1.05em;">📋 Enunciado:</strong><br>
+  Una central de alarmas industriales supervisa <strong>8 zonas independientes</strong> (<code>I<sub>0</sub></code> a <code>I<sub>7</sub></code>) y debe enviar hacia una pantalla central un código binario de 3 bits (<code>Y<sub>2</sub>Y<sub>1</sub>Y<sub>0</sub></code>) que identifique qué zona activó su sensor. <strong>¿Qué arquitectura de codificador (dimensionamiento, ecuaciones booleanas, compuertas e integrado comercial) se necesita, y cuál será el código binario entregado en <code>Y<sub>2</sub>Y<sub>1</sub>Y<sub>0</sub></code> si se dispara únicamente el sensor de la zona <code>I<sub>5</sub> = 1</code>?</strong>
+</div>
+
+<div align="center">
+
+| Parámetro | Valor / Dato |
+| :--- | :--- |
+| **Tipo de circuito** | Codificador binario 8:3 |
+| **Entradas individuales (2<sup>n</sup>)** | <code>2<sup>3</sup> = 8</code> zonas (<code>I<sub>0</sub></code> a <code>I<sub>7</sub></code>) |
+| **Salidas de código (<em>n</em>)** | <code>n = 3</code> bits (<code>Y<sub>2</sub></code>, <code>Y<sub>1</sub></code>, <code>Y<sub>0</sub></code>) |
+| **Compuertas discretas** | **3 compuertas OR** de 4 entradas cada una (una por cada bit de salida) |
+| **Integrado 74LS** | **74LS148** (codificador de prioridad 8:3, entradas/salidas activas en bajo) |
+| **Expansión** | Conexión en cascada (<code>EO</code> $\rightarrow$ <code>EI</code>) de dos **74LS148** para 16 zonas (<code>16:4</code>) |
+
+</div>
+
+<br>
+
+<div align="center">
+<pre><code>Y<sub>2</sub> = I<sub>4</sub> + I<sub>5</sub> + I<sub>6</sub> + I<sub>7</sub>
+Y<sub>1</sub> = I<sub>2</sub> + I<sub>3</sub> + I<sub>6</sub> + I<sub>7</sub>
+Y<sub>0</sub> = I<sub>1</sub> + I<sub>3</sub> + I<sub>5</sub> + I<sub>7</sub></code></pre>
+</div>
+
+<br>
+
+<div align="center">
+  <img src="../Imagenes/Codificador_8a3_Circuito.png" alt="Circuito lógico de un Codificador 8 a 3" width="650">
+  <p><em>Figura 16: Simulación en Logisim del Codificador 8:3 con compuertas OR.</em></p>
+</div>
+
+<div align="center">
+
+| Entrada activa (`= 1`) | `I7` | `I6` | `I5` | `I4` | `I3` | `I2` | `I1` | `I0` | `Y2` | `Y1` | `Y0` | Código binario |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| `I0` | `0` | `0` | `0` | `0` | `0` | `0` | `0` | `1` | `0` | `0` | `0` | `000` |
+| `I1` | `0` | `0` | `0` | `0` | `0` | `0` | `1` | `0` | `0` | `0` | `1` | `001` |
+| `I2` | `0` | `0` | `0` | `0` | `0` | `1` | `0` | `0` | `0` | `1` | `0` | `010` |
+| `I3` | `0` | `0` | `0` | `0` | `1` | `0` | `0` | `0` | `0` | `1` | `1` | `011` |
+| `I4` | `0` | `0` | `0` | `1` | `0` | `0` | `0` | `0` | `1` | `0` | `0` | `100` |
+| **`I5`** | **`0`** | **`0`** | **`1`** | **`0`** | **`0`** | **`0`** | **`0`** | **`0`** | **`1`** | **`0`** | **`1`** | **`101`** |
+| `I6` | `0` | `1` | `0` | `0` | `0` | `0` | `0` | `0` | `1` | `1` | `0` | `110` |
+| `I7` | `1` | `0` | `0` | `0` | `0` | `0` | `0` | `0` | `1` | `1` | `1` | `111` |
+
+</div>
+
+<div style="background-color: #e6ffed; border-left: 5px solid #198754; padding: 12px; border-radius: 6px; margin-top: 12px;">
+  <strong style="color: #146c43;">✅ Respuesta:</strong> Al activarse únicamente el sensor de la zona <strong><code>I<sub>5</sub> = 1</code></strong>, se encienden las salidas <code>Y<sub>2</sub> = 1</code> y <code>Y<sub>0</sub> = 1</code> mientras <code>Y<sub>1</sub> = 0</code>, entregando en la salida el código binario <strong><code>101</code></strong> (5 en decimal).
+</div>
+
+<br>
+
+---
+
+<div align="center">
+  <sub>✦ • ✦ • ✦</sub>
+</div>
+
+---
+
 
 
